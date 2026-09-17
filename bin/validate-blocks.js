@@ -12,6 +12,7 @@
  *
  * Usage:
  *   npm run validate:blocks
+ *   npm run validate:blocks -- --from=/path/documents.json   # {"name": "block markup", ...}
  */
 
 const { execFileSync } = require("child_process");
@@ -61,20 +62,30 @@ registerCoreBlocks();
 
 // Collect the documents to validate.
 const docs = [];
+const fromArg = process.argv.find((arg) => arg.startsWith("--from="));
 
-const patternsJson = execFileSync(
-	path.join(root, "bin", "wp.sh"),
-	[
-		"eval",
-		'$out = array(); foreach ( WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $p ) { if ( 0 === strpos( $p["name"], "fairport/" ) ) { $out[ $p["name"] ] = $p["content"]; } } echo wp_json_encode( $out );',
-	],
-	{ encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }
-);
+if (fromArg) {
+	const data = JSON.parse(fs.readFileSync(fromArg.slice(7), "utf8"));
+	for (const [name, content] of Object.entries(data)) {
+		docs.push({ name, content });
+	}
+}
+
+const patternsJson = fromArg
+	? "{}"
+	: execFileSync(
+			path.join(root, "bin", "wp.sh"),
+			[
+				"eval",
+				'$out = array(); foreach ( WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $p ) { if ( 0 === strpos( $p["name"], "fairport/" ) ) { $out[ $p["name"] ] = $p["content"]; } } echo wp_json_encode( $out );',
+			],
+			{ encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }
+		);
 const patterns = JSON.parse(patternsJson.slice(patternsJson.indexOf("{")));
 for (const [name, content] of Object.entries(patterns)) {
 	docs.push({ name: `pattern ${name}`, content });
 }
-for (const dir of ["templates", "parts"]) {
+for (const dir of fromArg ? [] : ["templates", "parts"]) {
 	for (const file of fs.readdirSync(path.join(root, dir))) {
 		if (file.endsWith(".html")) {
 			docs.push({
@@ -89,13 +100,21 @@ for (const dir of ["templates", "parts"]) {
 let captured = [];
 const origError = console.error;
 const origWarn = console.warn;
-// The validation logger calls console.error( format, name, blockType, generated, original ).
+// The validation logger calls console.error( format, ...args ) with %s/%o
+// placeholders; the last two substitutions are the generated and saved markup.
 const capture = (...args) => {
-	if (typeof args[0] === "string" && args[0].startsWith("Block validation failed")) {
-		captured.push(`${args[1]}\n    expected: ${args[3]}\n    found:    ${args[4]}`);
-	} else if (typeof args[0] === "string" && args[0].startsWith("Block validation")) {
-		captured.push(args[0].replace(/%s/g, () => String(args.splice(1, 1)[0])));
+	if (typeof args[0] !== "string" || !args[0].startsWith("Block validation")) {
+		return;
 	}
+	const values = args.slice(1);
+	if (args[0].startsWith("Block validation failed")) {
+		const name = values[0];
+		const generated = values[values.length - 2];
+		const saved = values[values.length - 1];
+		captured.push(`${name}\n    expected: ${generated}\n    found:    ${saved}`);
+		return;
+	}
+	captured.push(args[0].replace(/%[so]/g, () => String(values.shift())));
 };
 const origInfo = console.info;
 const origLog = console.log;
