@@ -8,6 +8,20 @@ Big photo mastheads with a single colour overlay, a serif and sans type pairing 
 
 See [`readme.txt`](readme.txt) for the directory listing.
 
+![The Fairport home page: photo masthead with a colour overlay, three signposts, a statement over a photo and a follow band.](.github/1-home.png)
+
+## A closer look
+
+![A single post: category eyebrow, title and meta over the featured image, tag pills, an author card, comments and a "Keep reading" row.](.github/2-single.png)
+
+![The About starter: page title banner, intro, call to action band and a board list.](.github/3-about.png)
+
+![The Forest Green palette with the Fraunces & Manrope typography preset.](.github/5-forest-green.png)
+
+![The Scarlet Red palette with the Manrope typography preset, on the About page.](.github/6-scarlet-red.png)
+
+<img src=".github/4-mobile-home.png" alt="The home page on a phone." width="390">
+
 ## Requirements
 
 - WordPress 6.6+ (section styles)
@@ -23,7 +37,7 @@ npm run build        # production build → dist/
 npm run lint:scss && npm run lint:php
 ```
 
-`bin/wp.sh` wraps WP-CLI for the `fairport` Local site. `npm run screenshot -- http://fairport.local` regenerates `screenshot.png`.
+`bin/wp.sh` wraps WP-CLI for the `fairport` Local site. `npm run screenshot -- http://fairport.local` regenerates `screenshot.png`; `npm run previews -- http://fairport.local` regenerates the README images in `.github/` (it switches palettes through `bin/preview-variation.php` and resets afterwards). `npm run validate:blocks` checks every pattern, template and part against the editor's block validator.
 
 ## Releasing
 

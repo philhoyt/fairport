@@ -22,7 +22,8 @@
     "test:unit": "wp-scripts test-unit-js",
     "test:e2e": "wp-scripts test-playwright",
     "test:php": "./vendor/bin/phpunit",
-    "validate:blocks": "node bin/validate-blocks.js"
+    "validate:blocks": "node bin/validate-blocks.js",
+    "previews": "node bin/previews.js"
   },
   "overrides": {
     "@sentry/node": {
