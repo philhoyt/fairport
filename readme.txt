@@ -3,7 +3,7 @@ Contributors: philhoyt
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, style-variations, threaded-comments, translation-ready
@@ -39,8 +39,13 @@ The page template uses the page's featured image as the masthead. Set a featured
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release.
+= 0.9.0 =
+* Add: Photo masthead, page title banner, three signposts, statement over a photo, call to action bands, follow band and team member patterns, plus Home and About page starters.
+* Add: Pages and posts use the featured image as their masthead; a "Page (No Title)" template for hero-led pages.
+* Add: Section styles (Secondary, Tint, Accent) that restyle a Group and everything inside it.
+* Add: Navy Blue, Forest Green and Scarlet Red colour presets and four typography presets (Bitter & Inter, Fraunces & Manrope, Manrope, Bitter).
+* Add: Single posts with tag pills, an author card, comments styled as bubbles and a "Keep reading" row.
+* Add: Navigation dropdowns with an underline indicator and a content-sized surface; full-screen mobile menu.
 
 == Copyright ==
 

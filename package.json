@@ -1,7 +1,7 @@
 {
   "name": "fairport",
   "description": "A block theme for clubs, coalitions and small non-profits.",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "repository": {
     "type": "git",
     "url": ""
