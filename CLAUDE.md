@@ -87,9 +87,9 @@ The `_context.scss` mixin controls whether styles apply on the front-end or in t
 
 **`primary` is never placed on `secondary`** (2.39:1). On dark bands use `base` text and outline buttons.
 
-Style variations in `styles/*.json` (Ridge, Slate) keep the same slugs. Section styles in `styles/blocks/` (`section-secondary`, `section-tint`, `section-accent`) restyle a Group/Columns and everything inside it; patterns use those classes instead of per-block colours. Covers use `overlayColor: "secondary"` because the overlay is an attribute, not a style.
+Colour presets in `styles/colors/` (Navy Blue = the theme.json default, Forest Green, Scarlet Red) keep the same slugs and are named by the band colour (`secondary`) that dominates the page. Typography presets in `styles/typography/` redefine the `display`/`body` font slugs, so patterns and theme.json styles follow without edits. Section styles in `styles/blocks/` (`section-secondary`, `section-tint`, `section-accent`) restyle a Group/Columns and everything inside it; patterns use those classes instead of per-block colours. Covers use `overlayColor: "secondary"` because the overlay is an attribute, not a style.
 
-Fonts are self-hosted variable woff2 in `assets/fonts/{bitter,inter}/` with their OFL licences, registered through `theme.json` `fontFace`: **`display`** (Bitter) for headings, **`body`** (Inter) for everything else.
+Fonts are self-hosted variable woff2 in `assets/fonts/{bitter,inter,fraunces,manrope}/` with their OFL licences, registered through `theme.json` `fontFace`: **`display`** (Bitter) for headings, **`body`** (Inter) for everything else; Fraunces and Manrope are registered under their own slugs and take over the roles in the typography presets. Adding a font: fetch the latin variable woff2 from the Google Fonts CSS API with a Chrome user agent, and the OFL from `github.com/google/fonts/ofl/<name>/OFL.txt`; credit it in `readme.txt`.
 
 Placeholder artwork in `assets/images/*.svg` is generated (topographic contours), CC0, and referenced from patterns with `get_theme_file_uri()`. Never resolve images from the media library inside a pattern.
 

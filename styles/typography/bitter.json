@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+  "version": 3,
+  "title": "Bitter",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Bitter, Georgia, 'Times New Roman', serif",
+          "name": "Bitter",
+          "slug": "display",
+          "fontFace": [
+            {
+              "fontFamily": "Bitter",
+              "fontStyle": "normal",
+              "fontWeight": "300 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/bitter/bitter-normal.woff2"]
+            },
+            {
+              "fontFamily": "Bitter",
+              "fontStyle": "italic",
+              "fontWeight": "300 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/bitter/bitter-italic.woff2"]
+            }
+          ]
+        },
+        {
+          "fontFamily": "Bitter, Georgia, 'Times New Roman', serif",
+          "name": "Bitter",
+          "slug": "body",
+          "fontFace": [
+            {
+              "fontFamily": "Bitter",
+              "fontStyle": "normal",
+              "fontWeight": "300 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/bitter/bitter-normal.woff2"]
+            },
+            {
+              "fontFamily": "Bitter",
+              "fontStyle": "italic",
+              "fontWeight": "300 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/bitter/bitter-italic.woff2"]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)",
+      "fontWeight": "400",
+      "lineHeight": "1.75"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "600",
+          "lineHeight": "1.15",
+          "letterSpacing": "-0.01em"
+        }
+      }
+    }
+  }
+}

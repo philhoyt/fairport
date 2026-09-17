@@ -1,0 +1,69 @@
+{
+  "$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+  "version": 3,
+  "title": "Fraunces & Manrope",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Fraunces, Georgia, 'Times New Roman', serif",
+          "name": "Fraunces",
+          "slug": "display",
+          "fontFace": [
+            {
+              "fontFamily": "Fraunces",
+              "fontStyle": "normal",
+              "fontWeight": "100 900",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/fraunces/fraunces-normal.woff2"]
+            },
+            {
+              "fontFamily": "Fraunces",
+              "fontStyle": "italic",
+              "fontWeight": "100 900",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/fraunces/fraunces-italic.woff2"]
+            }
+          ]
+        },
+        {
+          "fontFamily": "Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "name": "Manrope",
+          "slug": "body",
+          "fontFace": [
+            {
+              "fontFamily": "Manrope",
+              "fontStyle": "normal",
+              "fontWeight": "200 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/manrope/manrope-normal.woff2"]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)",
+      "lineHeight": "var(--wp--custom--line-height--medium)"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "500",
+          "lineHeight": "1.1",
+          "letterSpacing": "-0.015em"
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      }
+    }
+  }
+}

@@ -1,47 +1,47 @@
 {
   "$schema": "https://schemas.wp.org/wp/7.1/theme.json",
   "version": 3,
-  "title": "Ridge",
+  "title": "Scarlet Red",
   "settings": {
     "color": {
       "palette": [
         {
-          "color": "#faf9f4",
+          "color": "#fbf8f6",
           "name": "Base",
           "slug": "base"
         },
         {
-          "color": "#1a1d18",
+          "color": "#1a1616",
           "name": "Contrast",
           "slug": "contrast"
         },
         {
-          "color": "#9a4a1c",
+          "color": "#12314f",
           "name": "Primary",
           "slug": "primary"
         },
         {
-          "color": "#1f3d2b",
+          "color": "#a8281a",
           "name": "Secondary",
           "slug": "secondary"
         },
         {
-          "color": "#3c6e5a",
+          "color": "#1f6a8c",
           "name": "Tertiary",
           "slug": "tertiary"
         },
         {
-          "color": "#3b3f38",
+          "color": "#3f3a3a",
           "name": "Contrast Dark",
           "slug": "contrast-dark"
         },
         {
-          "color": "#b6b3a8",
+          "color": "#bbb3b0",
           "name": "Contrast Medium",
           "slug": "contrast-medium"
         },
         {
-          "color": "#ecebe2",
+          "color": "#f0e8e4",
           "name": "Contrast Light",
           "slug": "contrast-light"
         }

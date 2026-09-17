@@ -16,7 +16,8 @@ Fairport is built around big photo mastheads with a single colour overlay, a ser
 
 * Pages and posts use the featured image as their masthead automatically.
 * Three section styles (Secondary, Tint, Accent) restyle a Group and everything inside it from one control.
-* Three colour palettes (Harbor, Ridge, Slate) share the same slugs, so switching never breaks saved content.
+* Three colour palettes (Navy Blue, Forest Green, Scarlet Red) share the same slugs, so switching never breaks saved content.
+* Four typography presets (Bitter & Inter, Fraunces & Manrope, Manrope, Bitter) swap the display and body roles without touching a block.
 * A "Page (No Title)" template for pages that start with their own hero.
 * Home and About starter patterns, plus hero, signpost, statement, call to action, follow and team member building blocks.
 
@@ -65,6 +66,16 @@ Inter font
 Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
 License: SIL Open Font License, 1.1, https://opensource.org/licenses/OFL-1.1
 Source: https://fonts.google.com/specimen/Inter
+
+Fraunces font
+Copyright 2018 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces)
+License: SIL Open Font License, 1.1, https://opensource.org/licenses/OFL-1.1
+Source: https://fonts.google.com/specimen/Fraunces
+
+Manrope font
+Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)
+License: SIL Open Font License, 1.1, https://opensource.org/licenses/OFL-1.1
+Source: https://fonts.google.com/specimen/Manrope
 
 Placeholder artwork in assets/images (masthead-1.svg, masthead-2.svg, masthead-3.svg, card-1.svg, card-2.svg, card-3.svg, portrait.svg)
 Created by Phil Hoyt for this theme, released under CC0 1.0 Universal (Public Domain Dedication), https://creativecommons.org/publicdomain/zero/1.0/

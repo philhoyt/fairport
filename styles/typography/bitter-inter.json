@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+  "version": 3,
+  "title": "Bitter & Inter",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Bitter, Georgia, 'Times New Roman', serif",
+          "name": "Bitter",
+          "slug": "display",
+          "fontFace": [
+            {
+              "fontFamily": "Bitter",
+              "fontStyle": "normal",
+              "fontWeight": "300 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/bitter/bitter-normal.woff2"]
+            },
+            {
+              "fontFamily": "Bitter",
+              "fontStyle": "italic",
+              "fontWeight": "300 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/bitter/bitter-italic.woff2"]
+            }
+          ]
+        },
+        {
+          "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "name": "Inter",
+          "slug": "body",
+          "fontFace": [
+            {
+              "fontFamily": "Inter",
+              "fontStyle": "normal",
+              "fontWeight": "300 700",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/inter/inter-normal.woff2"]
+            },
+            {
+              "fontFamily": "Inter",
+              "fontStyle": "italic",
+              "fontWeight": "300 700",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/inter/inter-italic.woff2"]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "600",
+          "lineHeight": "1.15",
+          "letterSpacing": "-0.01em"
+        }
+      }
+    }
+  }
+}

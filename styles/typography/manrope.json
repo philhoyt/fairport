@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+  "version": 3,
+  "title": "Manrope",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "name": "Manrope",
+          "slug": "display",
+          "fontFace": [
+            {
+              "fontFamily": "Manrope",
+              "fontStyle": "normal",
+              "fontWeight": "200 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/manrope/manrope-normal.woff2"]
+            }
+          ]
+        },
+        {
+          "fontFamily": "Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "name": "Manrope",
+          "slug": "body",
+          "fontFace": [
+            {
+              "fontFamily": "Manrope",
+              "fontStyle": "normal",
+              "fontWeight": "200 800",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/manrope/manrope-normal.woff2"]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "700",
+          "lineHeight": "1.1",
+          "letterSpacing": "-0.025em"
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "typography": {
+          "fontWeight": "800",
+          "letterSpacing": "-0.02em"
+        }
+      }
+    }
+  }
+}
