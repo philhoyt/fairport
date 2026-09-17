@@ -3,7 +3,7 @@ Contributors: philhoyt
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.9.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
@@ -38,6 +38,10 @@ Add a new page. In the pattern chooser, pick Pages > Home. Then set the page's t
 The page template uses the page's featured image as the masthead. Set a featured image, or switch the page to the "Page (No Title)" template and start it with a Hero or Page title banner pattern.
 
 == Changelog ==
+
+= 1.0.0 =
+* Add: Right-to-left stylesheet, served automatically on RTL sites.
+* Change: First stable release.
 
 = 0.9.0 =
 * Add: Photo masthead, page title banner, three signposts, statement over a photo, call to action bands, follow band and team member patterns, plus Home and About page starters.
