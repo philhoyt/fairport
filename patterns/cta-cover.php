@@ -12,7 +12,7 @@
 $fairport_image = get_theme_file_uri( 'assets/images/masthead-2.svg' );
 ?>
 <!-- wp:cover {"url":"<?php echo esc_url( $fairport_image ); ?>","dimRatio":55,"overlayColor":"secondary","isUserOverlayColor":true,"align":"full","layout":{"type":"constrained"}} -->
-<div class="wp-block-cover alignfull"><span aria-hidden="true" class="wp-block-cover__background has-secondary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( $fairport_image ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+<div class="wp-block-cover alignfull"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( $fairport_image ); ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-secondary-background-color has-background-dim-60 has-background-dim"></span><div class="wp-block-cover__inner-container">
 	<!-- wp:paragraph {"align":"center","fontSize":"xs","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.12em","fontWeight":"700"}}} -->
 	<p class="has-text-align-center has-xs-font-size" style="font-weight:700;letter-spacing:0.12em;text-transform:uppercase"><?php esc_html_e( 'Our mission', 'fairport' ); ?></p>
 	<!-- /wp:paragraph -->
