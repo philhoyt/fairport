@@ -35,3 +35,12 @@
 		}
 	}
 }
+
+// The root `styles.spacing.blockGap` in theme.json makes WordPress emit
+// `:where(.wp-site-blocks) > * { margin-block: 1rem 0 }`, which puts a strip
+// of page background between the header, the content and the footer. The
+// bands are meant to sit flush, so drop it here; the value itself stays in
+// theme.json because it is also the fallback gap for every layout block.
+.wp-site-blocks > * {
+	margin-block: 0;
+}
