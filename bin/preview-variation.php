@@ -11,10 +11,16 @@
 $fairport_id = WP_Theme_JSON_Resolver::get_user_global_styles_post_id();
 
 if ( in_array( 'reset', $args, true ) ) {
+	// Core expects valid JSON here; an empty string logs a decode notice on every request.
 	wp_update_post(
 		array(
 			'ID'           => $fairport_id,
-			'post_content' => '',
+			'post_content' => wp_json_encode(
+				array(
+					'version'                     => 3,
+					'isGlobalStylesUserThemeJSON' => true,
+				)
+			),
 		)
 	);
 	WP_CLI::success( 'Global styles reset.' );
