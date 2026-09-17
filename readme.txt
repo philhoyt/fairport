@@ -3,7 +3,7 @@ Contributors: philhoyt
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
@@ -38,6 +38,10 @@ Add a new page. In the pattern chooser, pick Pages > Home. Then set the page's t
 The page template uses the page's featured image as the masthead. Set a featured image, or switch the page to the "Page (No Title)" template and start it with a Hero or Page title banner pattern.
 
 == Changelog ==
+
+= 1.0.2 =
+* Fix: Buttons that plugins style themselves, such as the WooCommerce mini cart toggle, keep their own look instead of being filled with the theme's dark button colour.
+* Change: Plain form buttons now use the same colours, size and radius as block buttons.
 
 = 1.0.1 =
 * Add: Pages crossfade into each other in browsers that support view transitions. Off when the system reduce-motion setting is on.
