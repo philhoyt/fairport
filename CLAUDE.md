@@ -22,6 +22,7 @@ npm run format         # Format JS/JSON/MD via wp-scripts
 npm run format:check   # Check formatting without writing
 
 # Utilities
+npm run validate:blocks # Parse every pattern/template/part with the editor's block validator
 npm run screenshot     # Capture screenshot.png of the local site (Puppeteer)
 npm run packages-update # Update @wordpress/* packages
 ```
@@ -171,6 +172,25 @@ wp i18n make-pot . languages/fairport.pot --include="templates,parts,patterns,in
 ```
 
 The `--include` paths cover both PHP source and any patterns/templates that might pick up additional strings as the theme grows.
+
+### Block markup must validate
+
+Patterns, templates and parts are hand-written serialised block HTML. If the
+HTML does not match what the block's `save()` would produce, the editor drops
+the block into recovery mode and Phil ends up re-saving whole template parts
+from the Site Editor to repair it (which inlines pattern markup and breaks
+i18n). **Run `npm run validate:blocks` after touching any of them** — it boots
+the core block registry under jsdom, renders the patterns through WP-CLI so the
+PHP runs, and parses everything with `@wordpress/blocks`; a block that would
+enter recovery mode fails the run with the expected/found markup.
+
+Mismatches found so far, all class-list slips: `has-background-dim-55` (core
+rounds `dimRatio` to the nearest 10, so 55 → `-60`); a separator without
+`has-alpha-channel-opacity` (present whenever no opacity is set); the cover's
+`<img>` must come before the overlay `<span>` in the current save format
+(span-first only matches a deprecation and gets silently rewritten). Class
+order and inline-style order do not matter — the validator compares them as
+sets — but missing or extra classes do.
 
 ### Gotchas
 
