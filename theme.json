@@ -950,9 +950,32 @@
           "text": "var(--wp--preset--color--contrast)"
         }
       },
+      "core/post-author-biography": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--s)"
+        }
+      },
       "core/post-author-name": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--xs)"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "currentColor"
+            },
+            "typography": {
+              "textDecoration": "none"
+            },
+            ":hover": {
+              "color": {
+                "text": "var(--wp--preset--color--primary)"
+              },
+              "typography": {
+                "textDecoration": "underline"
+              }
+            }
+          }
         }
       },
       "core/post-comments-form": {
@@ -964,11 +987,26 @@
         }
       },
       "core/post-date": {
-        "color": {
-          "text": "var(--wp--preset--color--contrast-dark)"
-        },
         "typography": {
           "fontSize": "var(--wp--preset--font-size--xs)"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "currentColor"
+            },
+            "typography": {
+              "textDecoration": "none"
+            },
+            ":hover": {
+              "color": {
+                "text": "var(--wp--preset--color--primary)"
+              },
+              "typography": {
+                "textDecoration": "underline"
+              }
+            }
+          }
         }
       },
       "core/post-featured-image": {
@@ -979,6 +1017,19 @@
       "core/post-terms": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--xs)"
+        },
+        "css": "&.taxonomy-post_tag { display: flex; flex-wrap: wrap; align-items: center; gap: var(--wp--preset--spacing--xs); } &.taxonomy-post_tag .wp-block-post-terms__separator { display: none; } &.taxonomy-post_tag a { background-color: var(--wp--preset--color--contrast-light); color: var(--wp--preset--color--contrast); border-radius: 999px; padding: 0.3em 0.9em; text-decoration: none; transition: background-color 140ms ease; } &.taxonomy-post_tag a:hover, &.taxonomy-post_tag a:focus { background-color: var(--wp--preset--color--contrast-medium); }",
+        "elements": {
+          "link": {
+            "typography": {
+              "textDecoration": "none"
+            },
+            ":hover": {
+              "typography": {
+                "textDecoration": "underline"
+              }
+            }
+          }
         }
       },
       "core/post-title": {
