@@ -1,0 +1,711 @@
+# Copyright (C) 2026 Phil Hoyt
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Fairport 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fairport\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-17T17:25:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: fairport\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Fairport"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/philhoyt/fairport"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A block theme for clubs, coalitions and small non-profits. Big photo mastheads with a colour overlay, a serif and sans type pairing, three-up signposts and ready-made call to action bands. Section styles and three colour palettes let you restyle every band from Global Styles."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Phil Hoyt"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://philhoyt.com/"
+msgstr ""
+
+#: inc/setup.php:110
+msgctxt "Block pattern category"
+msgid "Pages"
+msgstr ""
+
+#: inc/setup.php:111
+msgid "A collection of full page layouts."
+msgstr ""
+
+#: inc/setup.php:128
+msgid "Plain"
+msgstr ""
+
+#: patterns/banner-hero.php
+msgctxt "Pattern title"
+msgid "Hero with buttons"
+msgstr ""
+
+#: patterns/banner-hero.php
+msgctxt "Pattern description"
+msgid "Full-height photo masthead with a colour overlay, heading, intro and two buttons."
+msgstr ""
+
+#: patterns/banner-hero.php:17
+msgid "Wild places, kept wild"
+msgstr ""
+
+#: patterns/banner-hero.php:21
+msgid "A short, confident sentence about who you are and why it matters. Two lines at most, so the photo can do the rest of the talking."
+msgstr ""
+
+#: patterns/banner-hero.php:27
+msgid "Get started"
+msgstr ""
+
+#: patterns/banner-hero.php:31
+msgid "Learn more"
+msgstr ""
+
+#: patterns/banner-page-title.php
+msgctxt "Pattern title"
+msgid "Page title banner"
+msgstr ""
+
+#: patterns/banner-page-title.php
+msgctxt "Pattern description"
+msgid "Photo masthead with a colour overlay and a single page title."
+msgstr ""
+
+#: patterns/banner-page-title.php:17
+msgid "About us"
+msgstr ""
+
+#: patterns/cards-three-up.php
+msgctxt "Pattern title"
+msgid "Three signposts"
+msgstr ""
+
+#: patterns/cards-three-up.php
+msgctxt "Pattern description"
+msgid "Three linked image cards, each with a heading and one line of copy."
+msgstr ""
+
+#: patterns/cards-three-up.php:15
+#: patterns/footer.php:66
+msgid "Get involved"
+msgstr ""
+
+#: patterns/cards-three-up.php:16
+msgid "Join the people who keep this place running."
+msgstr ""
+
+#: patterns/cards-three-up.php:20
+#: patterns/footer.php:38
+msgid "Explore"
+msgstr ""
+
+#: patterns/cards-three-up.php:21
+msgid "Photos, stories and field notes from the ground."
+msgstr ""
+
+#: patterns/cards-three-up.php:25
+msgid "Support"
+msgstr ""
+
+#: patterns/cards-three-up.php:26
+msgid "Every contribution goes straight back into the work."
+msgstr ""
+
+#: patterns/comments.php
+msgctxt "Pattern title"
+msgid "Comments"
+msgstr ""
+
+#: patterns/comments.php
+msgctxt "Pattern description"
+msgid "Comments area with comments list, pagination, and comment form."
+msgstr ""
+
+#: patterns/comments.php:15
+msgid "Comments"
+msgstr ""
+
+#: patterns/cta-band.php
+msgctxt "Pattern title"
+msgid "Call to action band"
+msgstr ""
+
+#: patterns/cta-band.php
+msgctxt "Pattern description"
+msgid "Solid secondary band with a heading, one line of copy and two buttons."
+msgstr ""
+
+#: patterns/cta-band.php:16
+#: patterns/footer.php:72
+msgid "Become a member"
+msgstr ""
+
+#: patterns/cta-band.php:20
+msgid "Membership keeps the lights on and puts you first in line for trail days, meetups and news."
+msgstr ""
+
+#: patterns/cta-band.php:26
+msgid "Join today"
+msgstr ""
+
+#: patterns/cta-band.php:30
+#: patterns/footer.php:80
+msgid "Donate"
+msgstr ""
+
+#: patterns/cta-cover.php
+msgctxt "Pattern title"
+msgid "Statement over a photo"
+msgstr ""
+
+#: patterns/cta-cover.php
+msgctxt "Pattern description"
+msgid "Eyebrow, one big statement and an outline button on a photo band with a colour overlay."
+msgstr ""
+
+#: patterns/cta-cover.php:17
+msgid "Our mission"
+msgstr ""
+
+#: patterns/cta-cover.php:21
+msgid "To protect, care for and open up the places we love, for everyone who comes after us."
+msgstr ""
+
+#: patterns/cta-cover.php:27
+msgid "About the organisation"
+msgstr ""
+
+#: patterns/cta-inline.php
+msgctxt "Pattern title"
+msgid "Call to action, inline"
+msgstr ""
+
+#: patterns/cta-inline.php
+msgctxt "Pattern description"
+msgid "Accent band with a heading on the left and a button on the right."
+msgstr ""
+
+#: patterns/cta-inline.php:20
+msgid "Trail day this Saturday"
+msgstr ""
+
+#: patterns/cta-inline.php:24
+msgid "Tools, snacks and a good time provided. Bring gloves."
+msgstr ""
+
+#: patterns/cta-inline.php:32
+msgid "Sign up"
+msgstr ""
+
+#: patterns/footer.php
+msgctxt "Pattern title"
+msgid "Footer"
+msgstr ""
+
+#: patterns/footer.php
+msgctxt "Pattern description"
+msgid "Dark site footer with site title, tagline, two link columns, social links and copyright."
+msgstr ""
+
+#: patterns/footer.php:27
+#: patterns/social-band.php:25
+msgctxt "social link label"
+msgid "Instagram"
+msgstr ""
+
+#: patterns/footer.php:28
+#: patterns/social-band.php:26
+msgctxt "social link label"
+msgid "Facebook"
+msgstr ""
+
+#: patterns/footer.php:29
+#: patterns/social-band.php:27
+msgctxt "social link label"
+msgid "YouTube"
+msgstr ""
+
+#: patterns/footer.php:44
+msgid "About"
+msgstr ""
+
+#: patterns/footer.php:48
+msgid "Blog"
+msgstr ""
+
+#: patterns/footer.php:52
+msgid "Events"
+msgstr ""
+
+#: patterns/footer.php:56
+msgid "Contact"
+msgstr ""
+
+#: patterns/footer.php:76
+msgid "Volunteer"
+msgstr ""
+
+#: patterns/footer.php:84
+msgid "Newsletter"
+msgstr ""
+
+#. translators: 1: current year, 2: site name.
+#: patterns/footer.php:104
+#, php-format
+msgid "&copy; %1$s %2$s"
+msgstr ""
+
+#. translators: %s: WordPress.
+#: patterns/footer.php:117
+#, php-format
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: patterns/footer.php:118
+msgid "https://wordpress.org"
+msgstr ""
+
+#: patterns/header.php
+msgctxt "Pattern title"
+msgid "Header"
+msgstr ""
+
+#: patterns/header.php
+msgctxt "Pattern description"
+msgid "Site header with logo, site title and primary navigation."
+msgstr ""
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "404"
+msgstr ""
+
+#: patterns/hidden-404.php:14
+msgctxt "404 error page heading"
+msgid "Page not found"
+msgstr ""
+
+#: patterns/hidden-404.php:18
+msgctxt "404 error page body text"
+msgid "The page you are looking for doesn't exist, or it has been moved. Try searching using the form below."
+msgstr ""
+
+#: patterns/hidden-archive-header.php
+msgctxt "Pattern title"
+msgid "Archive header"
+msgstr ""
+
+#: patterns/hidden-archive-header.php
+msgctxt "Pattern description"
+msgid "Secondary band with the archive title and description."
+msgstr ""
+
+#: patterns/hidden-home-header.php
+msgctxt "Pattern title"
+msgid "Blog header"
+msgstr ""
+
+#: patterns/hidden-home-header.php
+msgctxt "Pattern description"
+msgid "Secondary band with the posts page title."
+msgstr ""
+
+#: patterns/hidden-home-header.php:14
+msgctxt "Posts page heading"
+msgid "Blog"
+msgstr ""
+
+#: patterns/hidden-page-header.php
+msgctxt "Pattern title"
+msgid "Page header"
+msgstr ""
+
+#: patterns/hidden-page-header.php
+msgctxt "Pattern description"
+msgid "Masthead for pages and posts. Uses the featured image as the cover; falls back to a solid secondary band."
+msgstr ""
+
+#: patterns/hidden-post-meta.php
+msgctxt "Pattern title"
+msgid "Post meta"
+msgstr ""
+
+#: patterns/hidden-post-meta.php
+msgctxt "Pattern description"
+msgid "Date, author and categories for a single post."
+msgstr ""
+
+#: patterns/hidden-search-header.php
+msgctxt "Pattern title"
+msgid "Search header"
+msgstr ""
+
+#: patterns/hidden-search-header.php
+msgctxt "Pattern description"
+msgid "Secondary band with the search results title."
+msgstr ""
+
+#: patterns/hidden-search.php
+msgctxt "Pattern title"
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-search.php:11
+msgctxt "Search form label."
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-search.php:11
+msgctxt "Search input placeholder text."
+msgid "Type here…"
+msgstr ""
+
+#: patterns/hidden-search.php:11
+msgctxt "Search button text. Verb."
+msgid "Search"
+msgstr ""
+
+#: patterns/page-about.php
+msgctxt "Pattern title"
+msgid "About"
+msgstr ""
+
+#: patterns/page-about.php
+msgctxt "Pattern description"
+msgid "About page: title banner, intro, a call to action band and a team list. Use with the \"Page (No Title)\" template."
+msgstr ""
+
+#: patterns/page-about.php:20
+msgid "Start with the mission in one paragraph: what you do, where you do it, and who it is for. Keep it plain. The rest of the page can carry the detail."
+msgstr ""
+
+#: patterns/page-about.php:24
+msgid "Then a little history. When did this start, what changed along the way, and what is the next thing you are working toward? A few sentences is plenty."
+msgstr ""
+
+#: patterns/page-about.php:34
+msgid "Board of directors"
+msgstr ""
+
+#: patterns/page-home.php
+msgctxt "Pattern title"
+msgid "Home"
+msgstr ""
+
+#: patterns/page-home.php
+msgctxt "Pattern description"
+msgid "Home page: hero, three signposts, a statement over a photo and a follow band. Use with the \"Page (No Title)\" template."
+msgstr ""
+
+#: patterns/post-navigation.php
+msgctxt "Pattern title"
+msgid "Post navigation"
+msgstr ""
+
+#: patterns/post-navigation.php
+msgctxt "Pattern description"
+msgid "Previous and next post links."
+msgstr ""
+
+#: patterns/post-navigation.php:14
+#: patterns/post-navigation.php:15
+msgid "Post navigation"
+msgstr ""
+
+#: patterns/social-band.php
+msgctxt "Pattern title"
+msgid "Follow band"
+msgstr ""
+
+#: patterns/social-band.php
+msgctxt "Pattern description"
+msgid "Quiet tinted band with a heading, one line and large social icons."
+msgstr ""
+
+#: patterns/social-band.php:16
+msgid "Follow along"
+msgstr ""
+
+#: patterns/social-band.php:20
+msgid "Work days, new projects and news, as it happens."
+msgstr ""
+
+#: patterns/social-band.php:28
+msgctxt "social link label"
+msgid "Email"
+msgstr ""
+
+#: patterns/team-member.php
+msgctxt "Pattern title"
+msgid "Team member"
+msgstr ""
+
+#: patterns/team-member.php
+msgctxt "Pattern description"
+msgid "Portrait beside a name, role and short bio. Stack several for a board or staff page."
+msgstr ""
+
+#: patterns/team-member.php:27
+msgid "Alex Rivera"
+msgstr ""
+
+#: patterns/team-member.php:31
+msgid "President"
+msgstr ""
+
+#: patterns/team-member.php:35
+msgid "Two or three sentences about this person: how they got here, what they look after, and the thing they would talk about all day if you let them."
+msgstr ""
+
+#: patterns/template-query-loop.php
+msgctxt "Pattern title"
+msgid "Posts list"
+msgstr ""
+
+#: patterns/template-query-loop.php
+msgctxt "Pattern description"
+msgid "Post list with featured image, title, excerpt, meta and pagination."
+msgstr ""
+
+#: patterns/template-query-loop.php:32
+msgctxt "Post excerpt link text."
+msgid "Read more"
+msgstr ""
+
+#: patterns/template-query-loop.php:47
+msgctxt "Message shown when a query returns nothing."
+msgid "No posts were found."
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Tertiary"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Contrast Dark"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Contrast Medium"
+msgstr ""
+
+#: theme.json
+#: styles/ridge.json
+#: styles/slate.json
+msgctxt "Color name"
+msgid "Contrast Light"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "XS"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "2XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Border radius size name"
+msgid "3XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "X-Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "X-Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "2X-Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "3X-Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Bitter"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "2X-Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "X-Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "X-Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "2X-Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "3X-Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page (No Title)"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: styles/blocks/section-accent.json
+msgctxt "Style variation name"
+msgid "Accent band"
+msgstr ""
+
+#: styles/blocks/section-secondary.json
+msgctxt "Style variation name"
+msgid "Secondary band"
+msgstr ""
+
+#: styles/blocks/section-tint.json
+msgctxt "Style variation name"
+msgid "Tint band"
+msgstr ""
+
+#: styles/ridge.json
+msgctxt "Style variation name"
+msgid "Ridge"
+msgstr ""
+
+#: styles/slate.json
+msgctxt "Style variation name"
+msgid "Slate"
+msgstr ""

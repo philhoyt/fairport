@@ -1,0 +1,174 @@
+//
+// Navigation block styles.
+//
+// Core ships the dropdown as a 200px-wide white box with a hard border, square
+// corners and no shadow, which forces long labels onto two lines. This module
+// gives it a real surface, and gives the top-level bar hit areas and an
+// underline indicator instead of `text-decoration`.
+//
+// All values come from `settings.custom.navigation` in theme.json.
+//
+
+/* stylelint-disable selector-class-pattern -- core block classes. */
+
+@use "../tools/context";
+
+// The top-level row of items, as opposed to anything inside a dropdown.
+//
+// `__container` is NOT a direct child of `.wp-block-navigation` -- core nests it
+// inside the responsive-container wrappers -- so the first step is a descendant
+// combinator. The child combinator after it is what keeps this off submenu items,
+// which live in `__submenu-container` instead.
+$top-item: ".wp-block-navigation .wp-block-navigation__container > .wp-block-navigation-item";
+
+.wp-block-navigation {
+	// ---------------------------------------------------------------- top level
+	.wp-block-navigation-item__content {
+		padding-block: var(--wp--preset--spacing--xs);
+		position: relative;
+	}
+
+	// The theme.json rule underlines the current item; the bar draws it instead.
+	.current-menu-item > a,
+	.current-page-ancestor > a {
+		text-decoration: none;
+	}
+
+	// Nudge the chevron closer to its label.
+	.wp-block-navigation__submenu-icon {
+		margin-inline-start: 0.25em;
+	}
+}
+
+// Underline indicator. A pseudo-element rather than `text-decoration` so it can
+// sit clear of the descenders and animate.
+#{$top-item} > .wp-block-navigation-item__content::after {
+	background-color: var(--wp--preset--color--primary);
+	block-size: var(--wp--custom--navigation--underline--height);
+	content: "";
+	inline-size: 100%;
+	inset-block-end: 0;
+	inset-inline-start: 0;
+	position: absolute;
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform 180ms ease;
+}
+
+#{$top-item}:hover > .wp-block-navigation-item__content::after,
+#{$top-item}:focus-within > .wp-block-navigation-item__content::after,
+#{$top-item}.current-menu-item > .wp-block-navigation-item__content::after,
+#{$top-item}.current-page-ancestor > .wp-block-navigation-item__content::after {
+	transform: scaleX(1);
+}
+
+// ---------------------------------------------------------------------- submenu
+.wp-block-navigation .wp-block-navigation__submenu-container {
+	background-color: var(--wp--preset--color--base);
+	border: 0;
+	border-radius: var(--wp--custom--navigation--submenu--radius);
+	box-shadow: var(--wp--custom--navigation--submenu--shadow);
+
+	// Core positions the dropdown flush against the bar.
+	inset-block-start: calc(100% + var(--wp--custom--navigation--submenu--offset));
+
+	// Size to the longest label rather than a fixed box, so a short menu stays
+	// compact and a long one still fits on one line.
+	min-inline-size: max-content;
+	max-inline-size: var(--wp--custom--navigation--submenu--max-width);
+	padding: var(--wp--preset--spacing--xs);
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	border-radius: calc(var(--wp--custom--navigation--submenu--radius) - 0.25rem);
+	color: var(--wp--preset--color--contrast);
+	padding: 0.5rem 0.75rem;
+	transition:
+		background-color 140ms ease,
+		color 140ms ease;
+	white-space: nowrap;
+}
+
+// Submenu items get their own hover treatment, so suppress the bar's underline.
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content::after {
+	content: none;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover,
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content:focus {
+	background-color: var(--wp--preset--color--contrast-light);
+	color: var(--wp--preset--color--primary);
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container .current-menu-item > .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--primary);
+	font-weight: 600;
+}
+
+// A nested submenu opens beside its parent, not below it.
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation__submenu-container {
+	inset-block-start: calc(var(--wp--custom--navigation--submenu--offset) * -1);
+}
+
+@include context.is(front) {
+	// ------------------------------------------------------------ mobile overlay
+	//
+	// Core marks the open overlay's background and padding `!important`, so those
+	// two need the same weight to land.
+	.wp-block-navigation__responsive-container.is-menu-open {
+		background-color: var(--wp--preset--color--base) !important;
+		padding: var(--wp--preset--spacing--xl) var(--wp--preset--spacing--m) !important;
+	}
+
+	// The header justifies the bar to the right, which core carries into the
+	// overlay as `items-justified-right`. In a full-screen column that resolves to
+	// `align-items: flex-end` and pushes every label off the right edge, so reset
+	// the layout custom properties the block reads.
+	//
+	// The content wrapper needs the same reset as the lists. Core closes the
+	// current `<ul>` whenever an item renders empty (a link to a draft page does),
+	// so one menu can come out as several sibling lists, and the wrapper's
+	// `align-items: flex-end` then right-aligns each shorter list against the
+	// widest one -- which reads as everything after a certain item being indented.
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content,
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container,
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+		--navigation-layout-align: flex-start;
+		--navigation-layout-justify: flex-start;
+		--navigation-layout-justification-setting: flex-start;
+
+		align-items: flex-start;
+		text-align: start;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+		inline-size: 100%;
+		padding-block-start: var(--wp--preset--spacing--l);
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+		font-size: var(--wp--preset--font-size--l);
+		padding-block: var(--wp--preset--spacing--xs);
+	}
+
+	// The dropdown surface is meaningless once the menu is a full-screen list;
+	// flatten it and indent the children instead.
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+		border-inline-start: 1px solid var(--wp--preset--color--contrast-light) !important;
+		border-radius: 0;
+		box-shadow: none;
+		margin-inline-start: var(--wp--preset--spacing--xs);
+		padding-inline-start: var(--wp--preset--spacing--s);
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+		font-size: var(--wp--preset--font-size--m);
+		white-space: normal;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-navigation .wp-block-navigation-item__content::after {
+		transition: none;
+	}
+}

@@ -1,0 +1,57 @@
+# NPM
+node_modules
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+*.map
+
+# Logs and databases
+*.log
+*.sql
+*.env
+
+# OS generated files
+.DS_Store
+ehthumbs.db
+Icon?
+![iI]con[_a-zA-Z0-9]
+Thumbs.db
+._*
+
+# Vim generated files
+*.un~
+
+# VSCode Project Files
+.vscode
+
+# PhpStorm Project Files
+.idea
+
+# Composer
+/vendor
+
+# Compiled files.
+# dist/ is committed on purpose: the theme directory zip, GitHub installs and
+# Playground all need the built CSS and there is no build step at install time.
+# The empty *.js stubs wp-scripts writes beside CSS-only entries are noise.
+/dist/css/*.js
+.windsurfrules
+
+# Local audit/scope plans and design notes (not for commit)
+/plans
+/docs
+
+# PHPUnit
+.phpunit.result.cache
+
+# Claude Code — machine-specific session permissions, not shared
+.claude/settings.local.json

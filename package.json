@@ -1,0 +1,51 @@
+{
+  "name": "fairport",
+  "description": "A block theme for clubs, coalitions and small non-profits.",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "start": "wp-scripts start --experimental-modules",
+    "build": "wp-scripts build --experimental-modules",
+    "format": "wp-scripts format",
+    "format:check": "prettier --check \"**/*.{js,json,md}\"",
+    "lint:js": "wp-scripts lint-js",
+    "lint:scss": "stylelint 'src/**/*.scss' --formatter verbose",
+    "lint:scss:fix": "stylelint 'src/**/*.scss' --fix",
+    "lint:php": "composer run-script lint",
+    "lint:php:fix": "composer run-script lint-fix",
+    "packages-update": "wp-scripts packages-update",
+    "screenshot": "node bin/screenshot.js",
+    "lint:css": "wp-scripts lint-style",
+    "test:unit": "wp-scripts test-unit-js",
+    "test:e2e": "wp-scripts test-playwright",
+    "test:php": "./vendor/bin/phpunit"
+  },
+  "overrides": {
+    "@sentry/node": {
+      "minimatch": "9.0.9"
+    },
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "9.0.9"
+    },
+    "markdownlint-cli": {
+      "minimatch": "3.1.5"
+    },
+    "serialize-javascript": "7.0.5",
+    "webpack-dev-server": "5.2.3"
+  },
+  "devDependencies": {
+    "@stylistic/stylelint-plugin": "^3.0.0",
+    "puppeteer": "^24.0.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "@wordpress/dependency-extraction-webpack-plugin": "^6.43.0",
+    "@wordpress/scripts": "^32.2.0",
+    "editorconfig": "^3.0.1",
+    "prettier": "^3.0.0",
+    "sass": "^1.86.3",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^13.0.0"
+  }
+}

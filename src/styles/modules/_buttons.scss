@@ -1,0 +1,26 @@
+//
+// Module: buttons.
+//
+// The outline variation is defined in theme.json with `currentColor`, so it
+// adapts to whichever band it sits in. Core's own outline rule keeps the
+// background transparent at a higher specificity than theme.json can reach, so
+// the hover tint lives here.
+//
+
+/* stylelint-disable selector-class-pattern -- core block classes. */
+.wp-block-button.is-style-outline > .wp-block-button__link.wp-element-button {
+	transition:
+		background-color 140ms ease,
+		color 140ms ease;
+
+	&:hover,
+	&:focus {
+		background-color: color-mix(in srgb, currentcolor 12%, transparent);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-button.is-style-outline > .wp-block-button__link.wp-element-button {
+		transition: none;
+	}
+}
