@@ -114,7 +114,7 @@
           "max-width": "22rem",
           "offset": "0.6rem",
           "radius": "0.5rem",
-          "shadow": "0 14px 32px -10px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08)"
+          "shadow": "0 14px 32px -10px color-mix(in srgb, var(--wp--preset--color--secondary) 28%, transparent), 0 2px 6px color-mix(in srgb, var(--wp--preset--color--secondary) 10%, transparent)"
         },
         "underline": {
           "height": "2px"
