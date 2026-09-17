@@ -65,4 +65,5 @@ jobs:
         with:
           files: fairport.zip
           body_path: changelog_body.txt
-          prerelease: ${{ startsWith(github.ref_name, 'v0.') }}
+          # Not marked pre-release even below v1.0.0: GitHub's releases/latest
+          # skips pre-releases, and the Playground blueprint depends on it.

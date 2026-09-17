@@ -33,7 +33,7 @@ Bump the version in `style.css`, `readme.txt` (`Stable tag` and a changelog entr
 git tag v0.9.0 && git push origin main --tags
 ```
 
-The release workflow builds `dist/`, checks the three version strings against the tag, packages `fairport.zip` with `wp dist-archive` (honouring `.distignore`), and attaches it to a GitHub release. Tags under `v1.0.0` are marked pre-release. The Playground blueprint always installs `releases/latest/download/fairport.zip`.
+The release workflow builds `dist/`, checks the three version strings against the tag, packages `fairport.zip` with `wp dist-archive` (honouring `.distignore`), and attaches it to a GitHub release. Releases are never flagged pre-release, because GitHub's `releases/latest` skips those. The Playground blueprint always installs `releases/latest/download/fairport.zip`.
 
 To build the zip locally:
 
