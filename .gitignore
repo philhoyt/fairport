@@ -55,3 +55,6 @@ Thumbs.db
 
 # Claude Code — machine-specific session permissions, not shared
 .claude/settings.local.json
+
+# Release staging directory (CI and local zip builds)
+/build

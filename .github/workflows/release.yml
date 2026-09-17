@@ -13,12 +13,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install JS dependencies
@@ -38,16 +38,15 @@ jobs:
             echo "::error::Version strings do not match the tag"; exit 1
           fi
 
-      - name: Install WP-CLI and dist-archive
-        run: |
-          curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-          chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp
-          wp package install wp-cli/dist-archive-command
-
-      # A fixed asset name keeps releases/latest/download/fairport.zip stable
-      # for the Playground blueprint.
+      # Stage a clean copy honouring .distignore and zip the folder (never its
+      # contents) so the archive has a single fairport/ root. A fixed asset name
+      # keeps releases/latest/download/fairport.zip stable for the Playground
+      # blueprint.
       - name: Build theme zip
-        run: wp dist-archive . "$(pwd)/fairport.zip" --format=zip
+        run: |
+          rm -rf build && mkdir -p build/fairport
+          rsync -a --exclude-from=.distignore --exclude=build ./ build/fairport/
+          (cd build && zip -qr ../fairport.zip fairport)
 
       - name: Verify zip
         run: |
