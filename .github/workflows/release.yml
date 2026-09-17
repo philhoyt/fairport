@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Check version strings match the tag
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          STYLE=$(sed -n 's/^Version: *//p' style.css | tr -d '\r')
+          STABLE=$(sed -n 's/^Stable tag: *//p' readme.txt | tr -d '\r')
+          PKG=$(node -p "require('./package.json').version")
+          echo "tag=$TAG style.css=$STYLE readme=$STABLE package.json=$PKG"
+          if [ "$TAG" != "$STYLE" ] || [ "$TAG" != "$STABLE" ] || [ "$TAG" != "$PKG" ]; then
+            echo "::error::Version strings do not match the tag"; exit 1
+          fi
+
+      - name: Install WP-CLI and dist-archive
+        run: |
+          curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp
+          wp package install wp-cli/dist-archive-command
+
+      # A fixed asset name keeps releases/latest/download/fairport.zip stable
+      # for the Playground blueprint.
+      - name: Build theme zip
+        run: wp dist-archive . "$(pwd)/fairport.zip" --format=zip
+
+      - name: Verify zip
+        run: |
+          unzip -l fairport.zip
+          unzip -l fairport.zip | awk '{print $4}' | grep -E "^fairport/(style.css|theme.json|readme.txt|templates/index.html|dist/css/style.css)$" | wc -l | grep -qx 5
+          ! unzip -l fairport.zip | grep -E "node_modules|/src/|/tests/|\.claude|/bin/"
+
+      - name: Extract changelog
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk "/^= ${VERSION} =/{found=1; next} found && /^= [0-9]/{exit} found{print}" readme.txt > changelog_body.txt
+          cat changelog_body.txt
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: fairport.zip
+          body_path: changelog_body.txt
+          prerelease: ${{ startsWith(github.ref_name, 'v0.') }}
