@@ -28,3 +28,6 @@ phpcs.xml
 phpstan.neon
 CLAUDE.md
 README.md
+phpunit.xml
+tests
+.phpunit.result.cache

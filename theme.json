@@ -46,7 +46,8 @@
           "size": "1.5rem",
           "slug": "3-xl"
         }
-      ]
+      ],
+      "radius": true
     },
     "color": {
       "custom": true,
@@ -1272,6 +1273,12 @@
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--body)",
           "fontSize": "var(--wp--preset--font-size--m)"
+        },
+        ":focus": {
+          "outline": {
+            "color": "var(--wp--preset--color--tertiary)",
+            "offset": "var(--wp--custom--outline--offset)"
+          }
         }
       },
       "textInput": {
@@ -1302,6 +1309,12 @@
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--body)",
           "fontSize": "var(--wp--preset--font-size--m)"
+        },
+        ":focus": {
+          "outline": {
+            "color": "var(--wp--preset--color--tertiary)",
+            "offset": "var(--wp--custom--outline--offset)"
+          }
         }
       }
     },
