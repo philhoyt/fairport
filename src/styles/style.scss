@@ -18,6 +18,17 @@ html {
 }
 
 /*
+* Crossfade between pages. A progressive enhancement: browsers without
+* cross-document view transitions ignore the at-rule, and it only applies to
+* same-origin navigations. Gated on the OS motion preference.
+*/
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition {
+		navigation: auto;
+	}
+}
+
+/*
 * Link styles
 * https://github.com/WordPress/gutenberg/issues/42319
 */
