@@ -74,6 +74,9 @@ function enqueue_scripts_and_styles() {
 		array(),
 		$style_asset['version']
 	);
+
+	// The build writes style-rtl.css alongside; serve it on RTL sites.
+	wp_style_add_data( 'fairport-style', 'rtl', 'replace' );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts_and_styles' );
 

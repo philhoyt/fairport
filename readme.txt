@@ -6,7 +6,7 @@ Requires PHP: 7.4
 Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, style-variations, threaded-comments, translation-ready
+Tags: one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
 
 A block theme for clubs, coalitions and small non-profits.
 
