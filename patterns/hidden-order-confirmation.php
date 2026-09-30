@@ -19,8 +19,8 @@
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--xl);padding-bottom:var(--wp--preset--spacing--xxl)">
 	<!-- wp:woocommerce/order-confirmation-summary {"align":"wide","fontSize":"s"} /-->
 
-	<!-- wp:woocommerce/order-confirmation-create-account {"align":"wide","className":"is-style-section-tint","style":{"border":{"radius":"var:preset|spacing|xs"},"spacing":{"padding":{"top":"var:preset|spacing|m","right":"var:preset|spacing|l","bottom":"var:preset|spacing|m","left":"var:preset|spacing|l"}}}} -->
-	<div class="wp-block-woocommerce-order-confirmation-create-account alignwide is-style-section-tint" style="border-radius:var(--wp--preset--spacing--xs);padding-top:var(--wp--preset--spacing--m);padding-right:var(--wp--preset--spacing--l);padding-bottom:var(--wp--preset--spacing--m);padding-left:var(--wp--preset--spacing--l)">
+	<!-- wp:woocommerce/order-confirmation-create-account {"align":"wide","backgroundColor":"contrast-light","textColor":"contrast","style":{"border":{"radius":"var:preset|spacing|xs"},"spacing":{"padding":{"top":"var:preset|spacing|m","right":"var:preset|spacing|l","bottom":"var:preset|spacing|m","left":"var:preset|spacing|l"}}}} -->
+	<div class="wp-block-woocommerce-order-confirmation-create-account alignwide has-contrast-color has-contrast-light-background-color has-text-color has-background" style="border-radius:var(--wp--preset--spacing--xs);padding-top:var(--wp--preset--spacing--m);padding-right:var(--wp--preset--spacing--l);padding-bottom:var(--wp--preset--spacing--m);padding-left:var(--wp--preset--spacing--l)">
 		<!-- wp:heading {"level":3,"fontSize":"l"} -->
 		<h3 class="wp-block-heading has-l-font-size">
 			<?php
