@@ -1343,6 +1343,16 @@
       "area": "footer",
       "name": "footer",
       "title": "Footer"
+    },
+    {
+      "area": "header",
+      "name": "checkout-header",
+      "title": "Checkout Header"
+    },
+    {
+      "area": "footer",
+      "name": "checkout-footer",
+      "title": "Checkout Footer"
     }
   ],
   "version": 3
