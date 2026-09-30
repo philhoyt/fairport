@@ -106,6 +106,49 @@ function is_woocommerce_active() {
 }
 
 /**
+ * Keep the store templates out of the post editor's template picker.
+ *
+ * Core offers every theme template file that declares no postTypes as a
+ * template for any post or page, so "Page: Cart" or "Single Product" would be
+ * listed under "Change template". WooCommerce reaches these templates by URL,
+ * never by assignment. Only the picker queries with a post_type, so the Site
+ * Editor still lists and edits them.
+ *
+ * @since 1.1.0
+ * @param \WP_Block_Template[] $templates     Found templates.
+ * @param array                $query         Template query arguments.
+ * @param string               $template_type wp_template or wp_template_part.
+ * @return \WP_Block_Template[]
+ */
+function hide_store_templates_from_picker( $templates, $query, $template_type ) {
+	if ( 'wp_template' !== $template_type || empty( $query['post_type'] ) ) {
+		return $templates;
+	}
+
+	$store_templates = array(
+		'archive-product',
+		'coming-soon',
+		'order-confirmation',
+		'page-cart',
+		'page-checkout',
+		'page-my-account',
+		'product-search-results',
+		'single-product',
+		'taxonomy-product_attribute',
+	);
+
+	return array_values(
+		array_filter(
+			$templates,
+			static function ( $template ) use ( $store_templates ) {
+				return ! in_array( $template->slug, $store_templates, true );
+			}
+		)
+	);
+}
+add_filter( 'get_block_templates', __NAMESPACE__ . '\\hide_store_templates_from_picker', 20, 3 );
+
+/**
  * Add editor styles support and enqueue editor stylesheet.
  *
  * Enables theme support for editor styles and loads the editor-specific
