@@ -128,17 +128,26 @@ html :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-f
 	}
 }
 
-// Select2, WooCommerce's searchable country and state picker.
-html .select2-container .select2-selection--single {
+// Account and checkout-shortcode forms: WooCommerce's block-theme CSS pads
+// .form-row fields to 0.9rem 1.1rem with a heavier selector. Match it so they
+// keep the button height too.
+html :is(.woocommerce, .woocommerce-page) form .form-row :is(input.input-text, select, textarea.input-text) {
+	line-height: 1.5;
+	padding: var(--wp--preset--spacing--xs) 0.75rem;
+}
+
+// Select2, WooCommerce's searchable country and state picker. WooCommerce
+// pads the rendered value inside the box, so the padding lives there.
+html :is(.woocommerce, .woocommerce-page) form .form-row .select2-container .select2-selection--single {
 	@include field;
 
 	height: auto;
-	padding: var(--wp--preset--spacing--xs) 0.75rem;
+	padding: 0;
 
 	.select2-selection__rendered {
 		color: inherit;
 		line-height: 1.5;
-		padding: 0;
+		padding: var(--wp--preset--spacing--xs) 2.25rem var(--wp--preset--spacing--xs) 0.75rem;
 	}
 
 	.select2-selection__arrow {
