@@ -2,9 +2,9 @@
 /**
  * PHPUnit bootstrap file.
  *
- * Loads the WordPress test suite when running integration tests, and
- * registers this directory as a theme root so the suite activates Fairport.
- * For unit tests (tests/phpunit/unit/) no WordPress bootstrap is needed.
+ * Loads the WordPress test suite and registers this directory as a theme
+ * root so the suite activates Fairport. Run it through `npm run test:php`,
+ * which runs PHPUnit inside wp-env where WP_TESTS_DIR points at the library.
  *
  * @package fairport
  */
@@ -14,8 +14,8 @@ declare( strict_types=1 );
 $wp_tests_dir = getenv( 'WP_TESTS_DIR' ) ? getenv( 'WP_TESTS_DIR' ) : rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
 
 if ( ! file_exists( $wp_tests_dir . '/includes/functions.php' ) ) {
-	// Unit test suite — no WordPress bootstrap needed.
-	return;
+	fwrite( STDERR, "The WordPress test library was not found at {$wp_tests_dir}.\nRun `npm run test:php`, which runs PHPUnit inside wp-env.\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite
+	exit( 1 );
 }
 
 // Required by the WP Core test bootstrap — points to the installed polyfills library.

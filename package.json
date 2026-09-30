@@ -21,7 +21,7 @@
     "lint:css": "wp-scripts lint-style",
     "test:unit": "wp-scripts test-unit-js",
     "test:e2e": "wp-scripts test-playwright",
-    "test:php": "./vendor/bin/phpunit",
+    "test:php": "wp-env run tests-cli --env-cwd=wp-content/themes/fairport vendor/bin/phpunit",
     "validate:blocks": "node bin/validate-blocks.js",
     "wp-env": "wp-env",
     "previews": "node bin/previews.js"
