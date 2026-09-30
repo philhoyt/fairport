@@ -3,6 +3,6 @@
   "themes": ["."],
   "plugins": ["https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip"],
   "lifecycleScripts": {
-    "afterStart": "wp-env run tests-cli wp plugin activate woocommerce.latest-stable && wp-env run tests-cli wp theme activate fairport && wp-env run tests-cli wp eval-file wp-content/themes/fairport/bin/seed-store.php"
+    "afterStart": "wp-env run tests-cli wp config set WP_DEBUG true --raw && wp-env run tests-cli wp config set WP_DEBUG_DISPLAY true --raw && wp-env run tests-cli wp plugin activate woocommerce.latest-stable && wp-env run tests-cli wp theme activate fairport && wp-env run tests-cli wp eval-file wp-content/themes/fairport/bin/seed-store.php"
   }
 }
