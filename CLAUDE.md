@@ -21,6 +21,11 @@ composer analyse       # PHPStan static analysis (level 5, WordPress stubs)
 npm run format         # Format JS/JSON/MD via wp-scripts
 npm run format:check   # Check formatting without writing
 
+# Testing (Docker; see Testing below)
+npm run wp-env start   # WordPress + WooCommerce on :8888, tests site on :8889
+npm run test:php       # PHPUnit inside wp-env
+npm run test:e2e       # Playwright specs against the :8889 tests site
+
 # Utilities
 npm run validate:blocks # Parse every pattern/template/part with the editor's block validator
 npm run screenshot     # Capture screenshot.png of the local site (Puppeteer)
@@ -117,7 +122,7 @@ Things that are easy to get wrong:
 - **Block hooks don't reach blocks inside patterns.** WooCommerce hooks `order-confirmation-create-account` after the summary only in a `WP_Block_Template` context, so `hidden-order-confirmation` places it explicitly.
 - **`aria-current` can't be saved on a Button block.** Mark the current button with the `is-current` class; `mark_current_button()` in `inc/setup.php` adds the attribute on output.
 - **Single product uses `add-to-cart-form`,** as WooCommerce's own blockified template does, not `add-to-cart-with-options`, which needs per-product-type template parts. Classic upsells are unhooked; the pattern shows them with the Upsells product collection.
-- **`validate:blocks` registers WooCommerce's blocks from the running site,** so it needs WooCommerce active on `fairport.local`. It checks their names and the core blocks inside them, but not their own saved wrapper markup. For that, open the Site Editor and run `wp.blocks.parse()` over every `fairport/` pattern (REST `/wp/v2/block-patterns/patterns`) and template, checking `isValid`; WooCommerce's editor scripts are loaded there. Take WooCommerce block markup from `wp.blocks.serialize()` in the editor, not from another theme.
+- **`validate:blocks` registers WooCommerce's blocks from the running site,** so it needs WooCommerce active on `fairport.local`. It checks their names and the core blocks inside them, but not their own saved wrapper markup; `tests/e2e/block-validity.spec.js` does (run `npm run test:e2e`). Take WooCommerce block markup from `wp.blocks.serialize()` in the Site Editor, not from another theme.
 - **Several WooCommerce blocks have no spacing support** (`product-collection`, `product-meta`). A `style.spacing` attribute on them is not saved, so their wrapper fails validation; put the spacing on a child or a wrapping Group.
 
 ### Templates
@@ -186,6 +191,19 @@ wp i18n make-pot . languages/fairport.pot --include="templates,parts,patterns,in
 ```
 
 The `--include` paths cover both PHP source and any patterns/templates that might pick up additional strings as the theme grows.
+
+### Testing
+
+`npm run wp-env start` runs WordPress with the theme and WooCommerce's latest stable release in Docker. The `afterStart` script in `.wp-env.json` turns on `WP_DEBUG` display, activates WooCommerce and Fairport, and seeds the tests site (`:8889`) with `bin/seed-store.php`: WooCommerce's pages, Gear and Prints categories, a simple, an on-sale and a variable product (SKUs `FP-TEST-1` to `3`). It is safe to rerun.
+
+- **PHPUnit** (`tests/phpunit/test-*.php`, `npm run test:php`) runs in `wp-env`'s `tests-cli` container with its own `wptests_` table prefix. The test library shares the tests site's database, and with the default prefix every run reinstalled over the site the Playwright specs use. It covers the template picker filter, `aria-current` on `is-current` buttons, the scoped upsell unhook, and the stylesheet staying off without WooCommerce.
+- **Playwright** (`tests/e2e/*.spec.js`, `npm run test:e2e`) runs against `:8889`:
+  - `block-validity` parses every pattern, template and part in the Site Editor with WooCommerce's blocks loaded, and flags unresolved pattern or part references.
+  - `store-pages` loads every store page as a visitor and fails on any PHP warning text.
+  - `header` keeps WooCommerce's icons grouped with the menu.
+  - `template-picker` keeps store templates out of the page template list.
+- **CI** (`.github/workflows/ci.yml`) runs the linters, a check that the committed `dist/` matches a fresh build, and both suites on every pull request, on pushes to `main`, and weekly. Because it tracks WooCommerce's latest stable release, a red scheduled run with no theme change usually means a WooCommerce update; the log prints the version under test.
+- **Theme files sync into Docker with a delay on macOS.** When a spec checks a change you just made to a pattern, wait for it to show on `:8889` before trusting the result.
 
 ### Block markup must validate
 

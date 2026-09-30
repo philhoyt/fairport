@@ -58,3 +58,6 @@ Thumbs.db
 
 # Release staging directory (CI and local zip builds)
 /build
+
+# Playwright output
+/artifacts

@@ -6,13 +6,8 @@
     colors="true"
     beStrictAboutTestsThatDoNotTestAnything="true">
     <testsuites>
-        <testsuite name="unit">
-            <directory suffix=".php">./tests/phpunit/unit</directory>
-        </testsuite>
         <testsuite name="integration">
-            <directory suffix=".php">./tests/phpunit</directory>
-            <exclude>./tests/phpunit/unit</exclude>
-            <exclude>./tests/phpunit/bootstrap.php</exclude>
+            <directory prefix="test-" suffix=".php">./tests/phpunit</directory>
         </testsuite>
     </testsuites>
     <coverage>
