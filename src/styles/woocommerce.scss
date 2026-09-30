@@ -328,6 +328,11 @@ html .woocommerce div.product .woocommerce-tabs ul.tabs {
 			text-decoration: none;
 		}
 
+		// WooCommerce fills the active tab white with a heavier selector.
+		&.active {
+			background: none;
+		}
+
 		&.active a {
 			border-bottom-color: var(--wp--preset--color--primary);
 			color: var(--wp--preset--color--contrast);
@@ -542,4 +547,13 @@ html .wc-block-mini-cart__drawer .wc-block-components-button.wc-block-components
 html .wc-block-mini-cart__drawer .wc-block-mini-cart__title {
 	font-family: var(--wp--preset--font-family--display);
 	font-size: var(--wp--preset--font-size--l);
+}
+
+// The closed drawer is only faded out (opacity 0 on the overlay), so its
+// links, quantity buttons and close button stay in the tab order behind an
+// aria-hidden wrapper (axe aria-hidden-focus). visibility: hidden takes them
+// out; the delay lets the slide-out finish before it applies.
+html .wc-block-components-drawer__screen-overlay--is-hidden {
+	transition: opacity 0.3s, visibility 0s 0.3s;
+	visibility: hidden;
 }
