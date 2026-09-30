@@ -106,6 +106,19 @@ Three things about the core markup that are easy to get wrong:
 - **The open mobile overlay carries the bar's justification.** The header justifies the nav right, which core passes through as `items-justified-right`; in the full-screen column that resolves to `align-items: flex-end`. The module resets `--navigation-layout-align`, `--navigation-layout-justify` and `--navigation-layout-justification-setting` on the open container.
 - **Core marks the open overlay's background and padding `!important`,** so those two declarations need the same weight.
 
+### WooCommerce
+
+Fairport ships store templates (`archive-product`, `taxonomy-product_attribute`, `product-search-results`, `single-product`, `page-cart`, `page-checkout`, `page-my-account`, `order-confirmation`, `coming-soon`) and `checkout-header`/`checkout-footer` parts. All are thin shells over `hidden-*` patterns, so nothing WooCommerce-specific shows in the inserter. `dist/css/woocommerce.css` is enqueued (front end and editor) only when `class_exists( 'WooCommerce' )`; theme.json `woocommerce/*` block styles are ignored by core when WooCommerce is off. `fairport.local` has WooCommerce active with seeded products for testing.
+
+Things that are easy to get wrong:
+
+- **WooCommerce puts `.woocommerce` and `.woocommerce-account` on `<body>`.** A `body .woocommerce …` selector silently misses product pages and My Account; `woocommerce.scss` anchors on `html` instead. The `--wc-form-*` tokens stay on `body`, because `html` loses to WooCommerce's `:root`.
+- **WooCommerce's CSS uses Twenty Twenty-Four's preset slugs** (`font-size--small`, `spacing--20`, `color--background`). `woocommerce.scss` aliases them to Fairport's; without that, fields fall back to the browser's 13px.
+- **Block hooks don't reach blocks inside patterns.** WooCommerce hooks `order-confirmation-create-account` after the summary only in a `WP_Block_Template` context, so `hidden-order-confirmation` places it explicitly.
+- **`aria-current` can't be saved on a Button block.** Mark the current button with the `is-current` class; `mark_current_button()` in `inc/setup.php` adds the attribute on output.
+- **Single product uses `add-to-cart-form`,** as WooCommerce's own blockified template does, not `add-to-cart-with-options`, which needs per-product-type template parts. Classic upsells are unhooked; the pattern shows them with the Upsells product collection.
+- **`validate:blocks` registers WooCommerce's blocks from the running site,** so it needs WooCommerce active on `fairport.local`. It checks their names and the core blocks inside them, but not their own saved wrapper markup; open changed store templates in the Site Editor.
+
 ### Templates
 
 `main` is a constrained Group; `post-content` and any wrapper Group inside it carry `"align":"full"` so full-bleed bands can escape (without it the constrained `main` caps them at content width). `page.html` opens with `hidden-page-header` (a cover that uses the featured image, or a solid `secondary` band when there is none). `page-no-title.html` is a custom template for pages that start with a hero pattern. There is no `front-page.html`; the Home starter pattern is offered when creating a page.
