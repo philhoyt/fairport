@@ -84,6 +84,7 @@ const wooBlocks = json(
 );
 for (const [name, attributes] of Object.entries(wooBlocks)) {
 	registerBlockType(name, {
+		apiVersion: 3,
 		title: name,
 		category: "widgets",
 		attributes,
