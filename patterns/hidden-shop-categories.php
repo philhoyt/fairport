@@ -3,7 +3,7 @@
  * Title: Shop categories
  * Slug: fairport/hidden-shop-categories
  * Inserter: no
- * Description: A row of buttons, one per product category with products, plus "All products". The current one is filled and marked is-current, which inc/setup.php turns into aria-current on the front end.
+ * Description: A row of buttons, one per product category with products, plus "All products". The current one is filled.
  *
  * @package fairport
  */
@@ -28,6 +28,9 @@ if ( is_wp_error( $fairport_terms ) || count( $fairport_terms ) < 2 ) {
 $fairport_queried = get_queried_object();
 $fairport_current = ( $fairport_queried instanceof WP_Term && 'product_cat' === $fairport_queried->taxonomy ) ? $fairport_queried->term_id : 0;
 $fairport_shop    = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+
+// The current button carries is-current rather than aria-current, which the
+// Button block cannot save; inc/setup.php adds aria-current on output.
 
 $fairport_links = array(
 	array(
