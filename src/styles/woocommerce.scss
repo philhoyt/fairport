@@ -1,0 +1,21 @@
+//
+// WooCommerce stylesheet.
+//
+// Enqueued on the front end and in the editor only while WooCommerce is
+// active (inc/setup.php), so none of this reaches sites without a shop.
+// Block-level looks that theme.json can express (prices, badges, breadcrumbs)
+// live in theme.json `styles.blocks`; this file covers what it cannot reach:
+// WooCommerce's classic form markup and the cart/checkout components.
+//
+
+// WooCommerce's classic form fields and extensions that reuse the markup read
+// these tokens, which WooCommerce defines on :root. Setting them on body wins
+// that tie whatever order the stylesheets load in. Radius matches the button
+// radius in theme.json `elements.button`.
+body {
+	--wc-form-border-color: var(--wp--preset--color--contrast-medium);
+	--wc-form-border-radius: var(--wp--preset--spacing--xs);
+	--wc-form-border-width: 1px;
+	--wc-form-color-background: var(--wp--preset--color--base);
+	--wc-form-color-text: var(--wp--preset--color--contrast);
+}

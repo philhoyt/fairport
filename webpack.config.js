@@ -169,6 +169,7 @@ const scripts = {
 		...resolveEntry(scriptConfig.entry),
 		"css/style": path.join(SRC_PATH, "styles/style.scss"),
 		"css/editor": path.join(SRC_PATH, "styles/editor.scss"),
+		"css/woocommerce": path.join(SRC_PATH, "styles/woocommerce.scss"),
 	}),
 	output: distOutput(scriptConfig.output),
 	plugins: scriptPlugins,
