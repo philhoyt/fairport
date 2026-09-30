@@ -111,7 +111,13 @@ function is_woocommerce_active() {
  * Core offers every theme template file that declares no postTypes as a
  * template for any post or page, so "Page: Cart" or "Single Product" would be
  * listed under "Change template". WooCommerce reaches these templates by URL,
- * never by assignment. Only the picker queries with a post_type, so the Site
+ * never by assignment.
+ *
+ * Two paths feed the picker: the REST templates route queried with a
+ * post_type, where they are dropped, and WP_Theme::get_post_templates()
+ * (the editor's availableTemplates), which queries without one and skips any
+ * template whose post_types list excludes the post type. An empty list, as
+ * WooCommerce gives its own templates, covers the second path while the Site
  * Editor still lists and edits them.
  *
  * @since 1.1.0
@@ -121,7 +127,7 @@ function is_woocommerce_active() {
  * @return \WP_Block_Template[]
  */
 function hide_store_templates_from_picker( $templates, $query, $template_type ) {
-	if ( 'wp_template' !== $template_type || empty( $query['post_type'] ) ) {
+	if ( 'wp_template' !== $template_type ) {
 		return $templates;
 	}
 
@@ -136,6 +142,15 @@ function hide_store_templates_from_picker( $templates, $query, $template_type ) 
 		'single-product',
 		'taxonomy-product_attribute',
 	);
+
+	if ( empty( $query['post_type'] ) ) {
+		foreach ( $templates as $template ) {
+			if ( in_array( $template->slug, $store_templates, true ) ) {
+				$template->post_types = array();
+			}
+		}
+		return $templates;
+	}
 
 	return array_values(
 		array_filter(
