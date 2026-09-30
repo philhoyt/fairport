@@ -19,16 +19,18 @@
 	<div class="wp-block-columns alignwide">
 		<!-- wp:column {"width":"52%"} -->
 		<div class="wp-block-column" style="flex-basis:52%">
-			<!-- wp:woocommerce/product-gallery {"hoverZoom":true,"fullScreenOnClick":true,"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-			<div class="wp-block-woocommerce-product-gallery">
-				<!-- wp:woocommerce/product-gallery-large-image -->
-					<!-- wp:woocommerce/product-image {"showProductLink":false,"showSaleBadge":false} /-->
+			<!-- wp:woocommerce/product-gallery {"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
+			<div class="wp-block-woocommerce-product-gallery wc-block-product-gallery"><!-- wp:woocommerce/product-gallery-large-image -->
+			<div class="wp-block-woocommerce-product-gallery-large-image wc-block-product-gallery-large-image__inner-blocks"><!-- wp:woocommerce/product-image {"showProductLink":false,"showSaleBadge":false} -->
+			<div class="is-loading"></div>
+			<!-- /wp:woocommerce/product-image -->
 
-					<!-- wp:woocommerce/product-gallery-large-image-next-previous /-->
-				<!-- /wp:woocommerce/product-gallery-large-image -->
+			<!-- wp:woocommerce/product-gallery-large-image-next-previous -->
+			<div class="wp-block-woocommerce-product-gallery-large-image-next-previous"></div>
+			<!-- /wp:woocommerce/product-gallery-large-image-next-previous --></div>
+			<!-- /wp:woocommerce/product-gallery-large-image -->
 
-				<!-- wp:woocommerce/product-gallery-thumbnails {"thumbnailSize":"15%"} /-->
-			</div>
+			<!-- wp:woocommerce/product-gallery-thumbnails {"thumbnailSize":"15%"} /--></div>
 			<!-- /wp:woocommerce/product-gallery -->
 		</div>
 		<!-- /wp:column -->
@@ -47,8 +49,8 @@
 
 			<!-- wp:woocommerce/add-to-cart-form /-->
 
-			<!-- wp:woocommerce/product-meta {"style":{"spacing":{"margin":{"top":"var:preset|spacing|m"}}}} -->
-			<div class="wp-block-woocommerce-product-meta" style="margin-top:var(--wp--preset--spacing--m)">
+			<!-- wp:woocommerce/product-meta -->
+			<div class="wp-block-woocommerce-product-meta">
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|m"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
 				<div class="wp-block-group">
 					<!-- wp:woocommerce/product-sku {"fontSize":"xs"} /-->
@@ -69,10 +71,10 @@
 <div class="wp-block-group alignfull is-style-section-tint" style="padding-top:var(--wp--preset--spacing--xl);padding-bottom:var(--wp--preset--spacing--xxl)">
 	<!-- wp:woocommerce/product-details {"align":"wide"} /-->
 
-	<!-- wp:woocommerce/product-collection {"queryId":1,"query":{"perPage":3,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","onbackorder","outofstock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/upsells","hideControls":["inherit","filterable"],"queryContextIncludes":["collection"],"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|xxl"}}}} -->
-	<div class="wp-block-woocommerce-product-collection alignwide" style="margin-top:var(--wp--preset--spacing--xxl)">
-		<!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|l"}}}} -->
-		<h2 class="wp-block-heading has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--l)"><?php esc_html_e( 'You may also like', 'fairport' ); ?></h2>
+	<!-- wp:woocommerce/product-collection {"queryId":1,"query":{"perPage":3,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","onbackorder","outofstock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/upsells","hideControls":["inherit","filterable"],"queryContextIncludes":["collection"],"align":"wide"} -->
+	<div class="wp-block-woocommerce-product-collection alignwide">
+		<!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|xxl","bottom":"var:preset|spacing|l"}}}} -->
+		<h2 class="wp-block-heading has-text-align-center" style="margin-top:var(--wp--preset--spacing--xxl);margin-bottom:var(--wp--preset--spacing--l)"><?php esc_html_e( 'You may also like', 'fairport' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:woocommerce/product-template {"style":{"spacing":{"blockGap":"var:preset|spacing|l"}}} -->
@@ -89,10 +91,10 @@
 	</div>
 	<!-- /wp:woocommerce/product-collection -->
 
-	<!-- wp:woocommerce/product-collection {"queryId":2,"query":{"perPage":3,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","onbackorder","outofstock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/related","hideControls":["inherit"],"queryContextIncludes":["collection"],"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|xxl"}}}} -->
-	<div class="wp-block-woocommerce-product-collection alignwide" style="margin-top:var(--wp--preset--spacing--xxl)">
-		<!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|l"}}}} -->
-		<h2 class="wp-block-heading has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--l)"><?php esc_html_e( 'Related products', 'fairport' ); ?></h2>
+	<!-- wp:woocommerce/product-collection {"queryId":2,"query":{"perPage":3,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","onbackorder","outofstock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/related","hideControls":["inherit"],"queryContextIncludes":["collection"],"align":"wide"} -->
+	<div class="wp-block-woocommerce-product-collection alignwide">
+		<!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|xxl","bottom":"var:preset|spacing|l"}}}} -->
+		<h2 class="wp-block-heading has-text-align-center" style="margin-top:var(--wp--preset--spacing--xxl);margin-bottom:var(--wp--preset--spacing--l)"><?php esc_html_e( 'Related products', 'fairport' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:woocommerce/product-template {"style":{"spacing":{"blockGap":"var:preset|spacing|l"}}} -->
