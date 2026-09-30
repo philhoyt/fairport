@@ -9,6 +9,8 @@
 //
 // WooCommerce restyles its components between releases. Keep selectors as
 // low as they can be while still winning, and say why each block exists.
+// Selectors start from `html`, not `body`: WooCommerce puts .woocommerce and
+// .woocommerce-account on <body> itself, so `body .woocommerce` misses them.
 //
 
 // Shared field look, also used by the cart and checkout sections.
@@ -69,7 +71,7 @@ body {
 // Product add-to-cart, catalog sorting, reviews, My Account and any extension
 // rendering WooCommerce's classic form markup. Padding and line height give
 // the same 2.5rem height as a button, so a field and its button line up.
-body :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-form, .wp-block-woocommerce-catalog-sorting) {
+html :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-form, .wp-block-woocommerce-catalog-sorting) {
 	.input-text,
 	input.qty,
 	select,
@@ -98,7 +100,8 @@ body :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-f
 		}
 	}
 
-	.form-row label {
+	.form-row label,
+	.comment-form label {
 		font-size: var(--wp--preset--font-size--xs);
 		font-weight: 700;
 		letter-spacing: 0.04em;
@@ -107,8 +110,9 @@ body :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-f
 	}
 
 	// Checkbox labels ("Remember me", terms) read as sentences.
-	.form-row label:has(input[type="checkbox"]),
-	.woocommerce-form__label-for-checkbox {
+	.comment-form-cookies-consent label,
+	.woocommerce-form__label-for-checkbox,
+	.form-row label:has(input[type="checkbox"]) {
 		align-items: center;
 		display: inline-flex;
 		font-size: var(--wp--preset--font-size--s);
@@ -125,7 +129,7 @@ body :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-f
 }
 
 // Select2, WooCommerce's searchable country and state picker.
-body .select2-container .select2-selection--single {
+html .select2-container .select2-selection--single {
 	@include field;
 
 	height: auto;
@@ -142,7 +146,7 @@ body .select2-container .select2-selection--single {
 	}
 }
 
-body .select2-dropdown {
+html .select2-dropdown {
 	border-color: var(--wp--preset--color--contrast-medium);
 }
 
@@ -152,19 +156,19 @@ body .select2-dropdown {
 
 // Login and register forms: WooCommerce boxes them in a grey border and they
 // stretch the full wide column. Drop the box and keep them readable.
-body .woocommerce :is(form.login, form.register, form.lost_reset_password) {
+html .woocommerce :is(form.login, form.register, form.lost_reset_password) {
 	border: 0;
 	margin-block: 0;
 	max-width: 32rem;
 	padding: 0;
 }
 
-body .woocommerce-account .woocommerce :is(h2, h3) {
+html .woocommerce-account .woocommerce :is(h2, h3) {
 	font-size: var(--wp--preset--font-size--xl);
 }
 
 // Log in button sits on its own line above "Remember me".
-body .woocommerce-form-login .form-row:has(.woocommerce-form-login__submit) {
+html .woocommerce-form-login .form-row:has(.woocommerce-form-login__submit) {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
@@ -177,14 +181,14 @@ body .woocommerce-form-login .form-row:has(.woocommerce-form-login__submit) {
 	}
 }
 
-body .woocommerce .lost_password {
+html .woocommerce .lost_password {
 	font-size: var(--wp--preset--font-size--xs);
 	margin-top: var(--wp--preset--spacing--m);
 }
 
 // Logged-in dashboard: the account menu becomes a plain list of links with
 // the current page marked, beside the content.
-body .woocommerce-account .woocommerce-MyAccount-navigation ul {
+html .woocommerce-account .woocommerce-MyAccount-navigation ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -207,10 +211,154 @@ body .woocommerce-account .woocommerce-MyAccount-navigation ul {
 	}
 }
 
-body .woocommerce-account .addresses .title .edit {
+html .woocommerce-account .addresses .title .edit {
 	float: none;
 }
 
-body .woocommerce-account address {
+html .woocommerce-account address {
 	font-style: normal;
+}
+
+// ---------------------------------------------------------------------------
+// Single product
+// ---------------------------------------------------------------------------
+
+// Variation pickers: WooCommerce's table rule sets its own padding and size on
+// the select, so match its selector to keep the select level with the
+// quantity field and button.
+html .woocommerce table.variations {
+	margin-bottom: var(--wp--preset--spacing--s);
+
+	th,
+	td {
+		padding-block: 0.25rem;
+		vertical-align: middle;
+	}
+
+	label {
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	tr td select {
+		font-size: var(--wp--preset--font-size--s);
+		height: auto;
+		padding: var(--wp--preset--spacing--xs) 2.25rem var(--wp--preset--spacing--xs) 0.75rem;
+	}
+
+	.reset_variations {
+		font-size: var(--wp--preset--font-size--xs);
+	}
+}
+
+// WooCommerce's background shorthand on this select resets the colour; keep
+// its chevron image and restore the field colour.
+html .woocommerce div.product form.cart .variations select {
+	background-color: var(--wp--preset--color--base);
+}
+
+// Until a variation is chosen WooCommerce fades the button to half opacity,
+// which turns primary into a washed-out pink. Show a clear inactive state.
+html .woocommerce .single_add_to_cart_button.button:is(.disabled, :disabled),
+html .woocommerce .single_add_to_cart_button.button:is(.disabled, :disabled):hover {
+	background-color: var(--wp--preset--color--contrast-light);
+	color: var(--wp--preset--color--contrast-dark);
+	cursor: not-allowed;
+	opacity: 1;
+}
+
+// Review form name and email fields are plain inputs without .input-text.
+// The id is WooCommerce's, not ours to rename.
+// stylelint-disable-next-line selector-id-pattern
+html #review_form :is(input[type="text"], input[type="email"]) {
+	@include field;
+
+	display: block;
+	max-width: 32rem;
+	padding: var(--wp--preset--spacing--xs) 0.75rem;
+	width: 100%;
+}
+
+// Description / Additional information / Reviews tabs: WooCommerce draws
+// grey folder tabs with curved pseudo-element corners. Use the underline
+// indicator the navigation uses instead.
+html .woocommerce div.product .woocommerce-tabs ul.tabs {
+	border-bottom: 1px solid var(--wp--preset--color--contrast-medium);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--m);
+	margin: 0 0 var(--wp--preset--spacing--l);
+	overflow: visible;
+	padding: 0;
+
+	&::before {
+		display: none;
+	}
+
+	li {
+		background: none;
+		border: 0;
+		border-radius: 0;
+		margin: 0;
+		padding: 0;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+
+		a {
+			border-bottom: var(--wp--custom--navigation--underline--height) solid transparent;
+			color: var(--wp--preset--color--contrast-dark);
+			font-size: var(--wp--preset--font-size--s);
+			font-weight: 600;
+			margin-bottom: -1px;
+			padding: var(--wp--preset--spacing--s) 0;
+			text-decoration: none;
+		}
+
+		&.active a {
+			border-bottom-color: var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--contrast);
+		}
+	}
+}
+
+html .woocommerce div.product .woocommerce-tabs .panel {
+	margin-bottom: 0;
+
+	> h2:first-child,
+	.woocommerce-Reviews-title {
+		font-size: var(--wp--preset--font-size--xl);
+	}
+}
+
+// Gallery arrows: plain buttons, so the theme's bare-button fallback painted
+// them as filled primary squares over the photo. Make them quiet discs.
+html .wc-block-next-previous-buttons__button {
+	background-color: color-mix(in srgb, var(--wp--preset--color--base) 88%, transparent);
+	border-radius: 50%;
+	color: var(--wp--preset--color--contrast);
+	padding: var(--wp--preset--spacing--xs);
+
+	&:hover,
+	&:focus {
+		background-color: var(--wp--preset--color--base);
+		color: var(--wp--preset--color--contrast);
+	}
+
+	&[aria-disabled="true"] {
+		opacity: 0.4;
+	}
+}
+
+html .wc-block-product-gallery-thumbnails__thumbnail__image {
+	border-radius: var(--wp--preset--spacing--xs);
+}
+
+html .wc-block-product-gallery-thumbnails__thumbnail__image--is-active {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
 }
