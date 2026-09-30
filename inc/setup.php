@@ -77,8 +77,33 @@ function enqueue_scripts_and_styles() {
 
 	// The build writes style-rtl.css alongside; serve it on RTL sites.
 	wp_style_add_data( 'fairport-style', 'rtl', 'replace' );
+
+	if ( is_woocommerce_active() ) {
+		$woo_asset_path = get_template_directory() . '/dist/css/woocommerce.asset.php';
+		$woo_asset      = file_exists( $woo_asset_path ) ? require $woo_asset_path : $style_asset;
+
+		wp_enqueue_style(
+			'fairport-woocommerce',
+			get_template_directory_uri() . '/dist/css/woocommerce.css',
+			array( 'fairport-style' ),
+			$woo_asset['version']
+		);
+		wp_style_add_data( 'fairport-woocommerce', 'rtl', 'replace' );
+	}
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts_and_styles' );
+
+/**
+ * Whether WooCommerce is active.
+ *
+ * Plugins load before the theme, so this is reliable from after_setup_theme on.
+ *
+ * @since 1.1.0
+ * @return bool
+ */
+function is_woocommerce_active() {
+	return class_exists( 'WooCommerce' );
+}
 
 /**
  * Add editor styles support and enqueue editor stylesheet.
@@ -95,6 +120,11 @@ function add_editor_styles() {
 
 	// Enqueue editor styles.
 	add_editor_style( 'dist/css/editor.css' );
+
+	// Cart, checkout and product blocks render in the editor too.
+	if ( is_woocommerce_active() ) {
+		add_editor_style( 'dist/css/woocommerce.css' );
+	}
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_editor_styles' );
 
