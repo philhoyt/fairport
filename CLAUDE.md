@@ -117,7 +117,8 @@ Things that are easy to get wrong:
 - **Block hooks don't reach blocks inside patterns.** WooCommerce hooks `order-confirmation-create-account` after the summary only in a `WP_Block_Template` context, so `hidden-order-confirmation` places it explicitly.
 - **`aria-current` can't be saved on a Button block.** Mark the current button with the `is-current` class; `mark_current_button()` in `inc/setup.php` adds the attribute on output.
 - **Single product uses `add-to-cart-form`,** as WooCommerce's own blockified template does, not `add-to-cart-with-options`, which needs per-product-type template parts. Classic upsells are unhooked; the pattern shows them with the Upsells product collection.
-- **`validate:blocks` registers WooCommerce's blocks from the running site,** so it needs WooCommerce active on `fairport.local`. It checks their names and the core blocks inside them, but not their own saved wrapper markup; open changed store templates in the Site Editor.
+- **`validate:blocks` registers WooCommerce's blocks from the running site,** so it needs WooCommerce active on `fairport.local`. It checks their names and the core blocks inside them, but not their own saved wrapper markup. For that, open the Site Editor and run `wp.blocks.parse()` over every `fairport/` pattern (REST `/wp/v2/block-patterns/patterns`) and template, checking `isValid`; WooCommerce's editor scripts are loaded there. Take WooCommerce block markup from `wp.blocks.serialize()` in the editor, not from another theme.
+- **Several WooCommerce blocks have no spacing support** (`product-collection`, `product-meta`). A `style.spacing` attribute on them is not saved, so their wrapper fails validation; put the spacing on a child or a wrapping Group.
 
 ### Templates
 
