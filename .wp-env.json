@@ -3,5 +3,8 @@
   "themes": ["."],
   "plugins": [
     "https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip"
-  ]
+  ],
+  "lifecycleScripts": {
+    "afterStart": "wp-env run tests-cli wp theme activate fairport && wp-env run tests-cli wp eval-file wp-content/themes/fairport/bin/seed-store.php"
+  }
 }
