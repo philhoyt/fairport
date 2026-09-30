@@ -183,13 +183,25 @@ add_filter( 'render_block_core/button', __NAMESPACE__ . '\\mark_current_button',
  * upsells with an Upsells product collection instead, so without this they
  * would appear twice, the second time as an unstyled list.
  *
+ * Only unhook when that pattern is about to render, so a child theme's own
+ * single product template keeps WooCommerce's upsells.
+ *
  * @since 1.1.0
- * @return void
+ * @param array $parsed_block Block about to be rendered.
+ * @return array
  */
-function remove_classic_upsells() {
-	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+function remove_classic_upsells( $parsed_block ) {
+	if (
+		isset( $parsed_block['blockName'], $parsed_block['attrs']['slug'] )
+		&& 'core/pattern' === $parsed_block['blockName']
+		&& 'fairport/hidden-single-product' === $parsed_block['attrs']['slug']
+	) {
+		remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+	}
+
+	return $parsed_block;
 }
-add_action( 'init', __NAMESPACE__ . '\\remove_classic_upsells' );
+add_filter( 'render_block_data', __NAMESPACE__ . '\\remove_classic_upsells' );
 
 /**
  * Add editor styles support and enqueue editor stylesheet.
