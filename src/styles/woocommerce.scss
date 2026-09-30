@@ -468,3 +468,69 @@ html :is(.wp-block-woocommerce-cart, .wp-block-woocommerce-checkout, .wc-block-m
 		color: var(--wp--preset--color--contrast);
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Notices
+// ---------------------------------------------------------------------------
+
+// WooCommerce's success and info banners are mint green and pale blue with a
+// 4px radius. Put them on the palette: a contrast-light panel with the accent
+// on the border and icon disc. Error and warning banners keep WooCommerce's
+// red and amber, which carry meaning the palette colours don't. Text stays
+// contrast on contrast-light, which clears 4.5:1 in every colour preset.
+html .wc-block-components-notice-banner {
+	border-radius: var(--wp--preset--spacing--xs);
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--xs);
+
+	&.is-success,
+	&.is-info {
+		background-color: var(--wp--preset--color--contrast-light);
+	}
+
+	&.is-success {
+		border-color: var(--wp--preset--color--tertiary);
+
+		> svg {
+			background-color: var(--wp--preset--color--tertiary);
+			fill: var(--wp--preset--color--base);
+		}
+	}
+
+	&.is-info {
+		border-color: var(--wp--preset--color--secondary);
+
+		> svg {
+			background-color: var(--wp--preset--color--secondary);
+			fill: var(--wp--preset--color--base);
+		}
+	}
+
+	.wc-block-components-notice-banner__content .wc-forward {
+		color: var(--wp--preset--color--contrast);
+		font-weight: 600;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Mini cart
+// ---------------------------------------------------------------------------
+
+// The drawer's outline buttons ("View my cart") use currentColor with a
+// hardcoded #1e1e1e hover; follow the theme's outline button instead.
+html .wc-block-mini-cart__drawer .wc-block-components-button.wc-block-components-button:not(.is-link).outlined,
+html .wc-block-mini-cart__drawer .wc-block-components-button.wc-block-components-button:not(.is-link).is-style-outline {
+	border-color: currentcolor;
+	color: var(--wp--preset--color--contrast);
+
+	&:hover,
+	&:focus {
+		background-color: var(--wp--preset--color--contrast);
+		color: var(--wp--preset--color--base);
+	}
+}
+
+html .wc-block-mini-cart__drawer .wc-block-mini-cart__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--l);
+}
