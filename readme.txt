@@ -3,7 +3,7 @@ Contributors: philhoyt
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
@@ -48,6 +48,7 @@ Yes. With WooCommerce active, Fairport's own templates are used for the shop, pr
 * Add: WooCommerce templates for the shop and product archives, product search, single products, cart, checkout, My Account, order confirmation and coming soon, with a category button row, upsells and related products.
 * Add: Checkout Header and Checkout Footer template parts that keep shoppers focused on checking out.
 * Add: WooCommerce form fields, notices, tabs, cart and checkout follow the theme's palette, type and field style, loaded only while WooCommerce is active.
+* Fix: The WooCommerce account and mini cart icons sit next to the menu instead of being spread across the header.
 
 = 1.0.2 =
 * Fix: Buttons that plugins style themselves, such as the WooCommerce mini cart toggle, keep their own look instead of being filled with the theme's dark button colour.
