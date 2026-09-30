@@ -36,7 +36,8 @@ $fairport_links = array(
 	array(
 		'label'   => __( 'All products', 'fairport' ),
 		'url'     => $fairport_shop,
-		'current' => 0 === $fairport_current,
+		// Only the shop itself: a tag or attribute archive is not "all products".
+		'current' => ! ( $fairport_queried instanceof WP_Term ),
 	),
 );
 foreach ( $fairport_terms as $fairport_term ) {
