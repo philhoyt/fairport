@@ -176,6 +176,22 @@ function mark_current_button( $block_content, $block ) {
 add_filter( 'render_block_core/button', __NAMESPACE__ . '\\mark_current_button', 10, 2 );
 
 /**
+ * Drop WooCommerce's classic upsell list from single products.
+ *
+ * WooCommerce's compatibility layer prints woocommerce_upsell_display after
+ * the product blocks for classic themes. The single product pattern shows
+ * upsells with an Upsells product collection instead, so without this they
+ * would appear twice, the second time as an unstyled list.
+ *
+ * @since 1.1.0
+ * @return void
+ */
+function remove_classic_upsells() {
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+}
+add_action( 'init', __NAMESPACE__ . '\\remove_classic_upsells' );
+
+/**
  * Add editor styles support and enqueue editor stylesheet.
  *
  * Enables theme support for editor styles and loads the editor-specific
