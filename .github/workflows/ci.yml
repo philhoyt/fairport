@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  # Weekly, so a WooCommerce release that breaks the theme shows up even when
+  # no pull request is open. CI tracks WooCommerce's latest stable release.
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          tools: composer
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          composer install --no-interaction --prefer-dist
+
+      - name: PHP_CodeSniffer
+        run: composer run lint
+
+      - name: PHPStan
+        run: composer run analyse
+
+      - name: ESLint
+        run: npm run lint:js
+
+      - name: Stylelint
+        run: npm run lint:scss
+
+      - name: Prettier
+        run: npm run format:check
+
+      # dist/ is committed because the theme zip has no build step. A SCSS
+      # change without a rebuild ships stale CSS, so fail when they differ.
+      - name: Committed dist/ matches a fresh build
+        run: |
+          npm run build
+          git diff --exit-code -- dist/
+
+  test:
+    name: PHPUnit and Playwright
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          tools: composer
+
+      # vendor/ is mapped into the wp-env containers, where PHPUnit runs.
+      - name: Install dependencies
+        run: |
+          npm ci
+          composer install --no-interaction --prefer-dist
+
+      - name: Start wp-env
+        run: npx wp-env start
+
+      - name: WooCommerce version under test
+        run: npx wp-env run tests-cli wp plugin list --fields=name,version,status
+
+      - name: PHPUnit
+        run: npm run test:php
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Playwright
+        run: npm run test:e2e
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-artifacts
+          path: artifacts/
+          if-no-files-found: ignore
