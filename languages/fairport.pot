@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Fairport 1.0.0\n"
+"Project-Id-Version: Fairport 1.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fairport\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-17T18:13:59+00:00\n"
+"POT-Creation-Date: 2026-09-30T14:42:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fairport\n"
@@ -39,16 +39,16 @@ msgstr ""
 msgid "https://philhoyt.com/"
 msgstr ""
 
-#: inc/setup.php:110
+#: inc/setup.php:229
 msgctxt "Block pattern category"
 msgid "Pages"
 msgstr ""
 
-#: inc/setup.php:111
+#: inc/setup.php:230
 msgid "A collection of full page layouts."
 msgstr ""
 
-#: inc/setup.php:128
+#: inc/setup.php:247
 msgid "Plain"
 msgstr ""
 
@@ -268,6 +268,7 @@ msgstr ""
 
 #. translators: 1: current year, 2: site name.
 #: patterns/footer.php:104
+#: patterns/hidden-checkout-footer.php:21
 #, php-format
 msgid "&copy; %1$s %2$s"
 msgstr ""
@@ -331,6 +332,73 @@ msgstr ""
 msgid "Written by"
 msgstr ""
 
+#: patterns/hidden-checkout-footer.php
+msgctxt "Pattern title"
+msgid "Checkout footer"
+msgstr ""
+
+#: patterns/hidden-checkout-footer.php
+msgctxt "Pattern description"
+msgid "Quiet tint footer for the checkout: copyright and a line on where to turn with order questions."
+msgstr ""
+
+#: patterns/hidden-checkout-footer.php:30
+msgid "Questions about your order? Reply to your order confirmation email and we will get back to you."
+msgstr ""
+
+#: patterns/hidden-checkout-header.php
+msgctxt "Pattern title"
+msgid "Checkout header"
+msgstr ""
+
+#: patterns/hidden-checkout-header.php
+msgctxt "Pattern description"
+msgid "Pared-back header for the checkout: logo and site title, a \"Secure checkout\" label and a link back to the cart, with no navigation to lead shoppers away."
+msgstr ""
+
+#: patterns/hidden-checkout-header.php:26
+msgid "Secure checkout"
+msgstr ""
+
+#: patterns/hidden-checkout-header.php:29
+msgctxt "Checkout header link to the cart."
+msgid "Back to cart"
+msgstr ""
+
+#: patterns/hidden-coming-soon.php
+msgctxt "Pattern title"
+msgid "Coming soon"
+msgstr ""
+
+#: patterns/hidden-coming-soon.php
+msgctxt "Pattern description"
+msgid "WooCommerce's coming soon page. With only the store pages hidden it keeps the site header and footer; with the whole site hidden it is a standalone page with a log in link."
+msgstr ""
+
+#: patterns/hidden-coming-soon.php:21
+msgid "The shop is opening soon"
+msgstr ""
+
+#: patterns/hidden-coming-soon.php:25
+msgid "We are getting everything ready. Until it opens, the rest of the site is here as usual."
+msgstr ""
+
+#: patterns/hidden-coming-soon.php:31
+msgid "Back to the home page"
+msgstr ""
+
+#: patterns/hidden-coming-soon.php:51
+msgid "Something new is on the way"
+msgstr ""
+
+#: patterns/hidden-coming-soon.php:55
+msgid "We are putting the finishing touches on the site. Check back soon."
+msgstr ""
+
+#: patterns/hidden-coming-soon.php:61
+msgid "Log in"
+msgstr ""
+
 #: patterns/hidden-home-header.php
 msgctxt "Pattern title"
 msgid "Blog header"
@@ -344,6 +412,54 @@ msgstr ""
 #: patterns/hidden-home-header.php:14
 msgctxt "Posts page heading"
 msgid "Blog"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php
+msgctxt "Pattern title"
+msgid "Order confirmation"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php
+msgctxt "Pattern description"
+msgid "Order status in a secondary band, then the order summary, totals, downloads, addresses and any additional fields."
+msgstr ""
+
+#. translators: %s: site name.
+#: patterns/hidden-order-confirmation.php:29
+#, php-format
+msgid "Create an account with %s"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:39
+msgid "Faster future purchases"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:43
+msgid "Securely save payment info"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:47
+msgid "Track orders and view shopping history"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:56
+msgid "Order details"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:64
+msgid "Downloads"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:76
+msgid "Shipping address"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:88
+msgid "Billing address"
+msgstr ""
+
+#: patterns/hidden-order-confirmation.php:100
+msgid "Additional information"
 msgstr ""
 
 #: patterns/hidden-page-header.php
@@ -364,6 +480,50 @@ msgstr ""
 #: patterns/hidden-post-header.php
 msgctxt "Pattern description"
 msgid "Masthead for single posts: category eyebrow, title, date and author over the featured image."
+msgstr ""
+
+#: patterns/hidden-product-grid.php
+msgctxt "Pattern title"
+msgid "Product grid"
+msgstr ""
+
+#: patterns/hidden-product-grid.php
+msgctxt "Pattern description"
+msgid "Result count and sorting, then a three-column grid of the current product query with pagination and a no-results message."
+msgstr ""
+
+#: patterns/hidden-product-grid.php:47
+msgid "No products match. Try another category or browse everything in the shop."
+msgstr ""
+
+#: patterns/hidden-product-grid.php:53
+msgid "Browse the shop"
+msgstr ""
+
+#: patterns/hidden-product-search.php
+msgctxt "Pattern title"
+msgid "Product search"
+msgstr ""
+
+#: patterns/hidden-product-search.php
+msgctxt "Pattern description"
+msgid "Search form limited to products."
+msgstr ""
+
+#: patterns/hidden-product-search.php:12
+msgctxt "Product search form label."
+msgid "Search products"
+msgstr ""
+
+#: patterns/hidden-product-search.php:12
+msgctxt "Product search input placeholder text."
+msgid "Search products…"
+msgstr ""
+
+#: patterns/hidden-product-search.php:12
+#: patterns/hidden-search.php:11
+msgctxt "Search button text. Verb."
+msgid "Search"
 msgstr ""
 
 #: patterns/hidden-search-header.php
@@ -391,9 +551,51 @@ msgctxt "Search input placeholder text."
 msgid "Type here…"
 msgstr ""
 
-#: patterns/hidden-search.php:11
-msgctxt "Search button text. Verb."
-msgid "Search"
+#: patterns/hidden-shop-categories.php
+msgctxt "Pattern title"
+msgid "Shop categories"
+msgstr ""
+
+#: patterns/hidden-shop-categories.php
+msgctxt "Pattern description"
+msgid "A row of buttons, one per product category with products, plus \"All products\". The current one is filled."
+msgstr ""
+
+#: patterns/hidden-shop-categories.php:37
+msgid "All products"
+msgstr ""
+
+#: patterns/hidden-single-product.php
+msgctxt "Pattern title"
+msgid "Single product"
+msgstr ""
+
+#: patterns/hidden-single-product.php
+msgctxt "Pattern description"
+msgid "Breadcrumbs, gallery beside the product summary and add-to-cart form, a tint band with the description, details and reviews tabs, then upsells and related products."
+msgstr ""
+
+#: patterns/hidden-single-product.php:56
+msgctxt "Product tags prefix."
+msgid "Tags: "
+msgstr ""
+
+#: patterns/hidden-single-product.php:75
+msgid "You may also like"
+msgstr ""
+
+#: patterns/hidden-single-product.php:95
+msgid "Related products"
+msgstr ""
+
+#: patterns/hidden-store-page-header.php
+msgctxt "Pattern title"
+msgid "Store page header"
+msgstr ""
+
+#: patterns/hidden-store-page-header.php
+msgctxt "Pattern description"
+msgid "Slim secondary band with the page title, for the cart and account pages, where the page's own content should start near the top."
 msgstr ""
 
 #: patterns/page-about.php
@@ -740,6 +942,16 @@ msgstr ""
 #: theme.json
 msgctxt "Template part name"
 msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Checkout Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Checkout Footer"
 msgstr ""
 
 #: styles/blocks/section-accent.json

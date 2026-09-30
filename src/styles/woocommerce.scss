@@ -1,0 +1,545 @@
+//
+// WooCommerce stylesheet.
+//
+// Enqueued on the front end and in the editor only while WooCommerce is
+// active (inc/setup.php), so none of this reaches sites without a shop.
+// Block-level looks that theme.json can express (prices, badges, breadcrumbs)
+// live in theme.json `styles.blocks`; this file covers what it cannot reach:
+// WooCommerce's classic form markup and the cart/checkout components.
+//
+// WooCommerce restyles its components between releases. Keep selectors as
+// low as they can be while still winning, and say why each block exists.
+// Selectors start from `html`, not `body`: WooCommerce puts .woocommerce and
+// .woocommerce-account on <body> itself, so `body .woocommerce` misses them.
+//
+
+// Shared field look, also used by the cart and checkout sections.
+@mixin field {
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--contrast-medium);
+	border-radius: var(--wp--preset--spacing--xs);
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--s);
+	line-height: 1.5;
+}
+
+@mixin focus-ring {
+	outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--preset--color--tertiary);
+	outline-offset: var(--wp--custom--outline--offset);
+}
+
+// ---------------------------------------------------------------------------
+// Tokens
+// ---------------------------------------------------------------------------
+
+// WooCommerce's classic form fields and extensions that reuse the markup read
+// these tokens, which WooCommerce defines on :root. Setting them on body wins
+// that tie whatever order the stylesheets load in. Radius matches the button
+// radius in theme.json `elements.button`.
+//
+// WooCommerce's block-theme CSS also sizes and spaces things with Twenty
+// Twenty-Four's preset slugs (font-size "small", spacing "20", colour
+// "background"). Fairport's slugs differ, so those references resolved to
+// nothing and fields fell back to the browser's 13px. Point them at the
+// nearest Fairport preset.
+body {
+	--wc-form-border-color: var(--wp--preset--color--contrast-medium);
+	--wc-form-border-radius: var(--wp--preset--spacing--xs);
+	--wc-form-border-width: 1px;
+	--wc-form-color-background: var(--wp--preset--color--base);
+	--wc-form-color-text: var(--wp--preset--color--contrast);
+	--wp--preset--font-size--x-small: var(--wp--preset--font-size--xs);
+	--wp--preset--font-size--small: var(--wp--preset--font-size--s);
+	--wp--preset--font-size--normal: var(--wp--preset--font-size--s);
+	--wp--preset--font-size--medium: var(--wp--preset--font-size--m);
+	--wp--preset--font-size--large: var(--wp--preset--font-size--l);
+	--wp--preset--font-size--x-large: var(--wp--preset--font-size--xl);
+	--wp--preset--font-size--huge: var(--wp--preset--font-size--xxl);
+	--wp--preset--spacing--20: var(--wp--preset--spacing--s);
+	--wp--preset--spacing--30: var(--wp--preset--spacing--m);
+	--wp--preset--spacing--40: var(--wp--preset--spacing--l);
+	--wp--preset--color--background: var(--wp--preset--color--base);
+	--wp--preset--color--foreground: var(--wp--preset--color--contrast);
+	--wp--preset--color--contrast-2: var(--wp--preset--color--contrast-dark);
+}
+
+// ---------------------------------------------------------------------------
+// Classic form fields
+// ---------------------------------------------------------------------------
+
+// Product add-to-cart, catalog sorting, reviews, My Account and any extension
+// rendering WooCommerce's classic form markup. Padding and line height give
+// the same 2.5rem height as a button, so a field and its button line up.
+html :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-form, .wp-block-woocommerce-catalog-sorting) {
+	.input-text,
+	input.qty,
+	select,
+	textarea {
+		@include field;
+
+		padding: var(--wp--preset--spacing--xs) 0.75rem;
+	}
+
+	textarea {
+		min-height: 8rem;
+	}
+
+	select {
+		// Room for WooCommerce's chevron background image.
+		padding-inline-end: 2.25rem;
+	}
+
+	:is(.input-text, input.qty, select, textarea) {
+		&:focus {
+			@include focus-ring;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+	}
+
+	.form-row label,
+	.comment-form label {
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		margin-bottom: 0.35rem;
+		text-transform: uppercase;
+	}
+
+	// Checkbox labels ("Remember me", terms) read as sentences.
+	.comment-form-cookies-consent label,
+	.woocommerce-form__label-for-checkbox,
+	.form-row label:has(input[type="checkbox"]) {
+		align-items: center;
+		display: inline-flex;
+		font-size: var(--wp--preset--font-size--s);
+		font-weight: 400;
+		gap: 0.5em;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+
+	.required {
+		color: var(--wp--preset--color--primary);
+		text-decoration: none;
+	}
+}
+
+// Account and checkout-shortcode forms: WooCommerce's block-theme CSS pads
+// .form-row fields to 0.9rem 1.1rem with a heavier selector. Match it so they
+// keep the button height too.
+html :is(.woocommerce, .woocommerce-page) form .form-row :is(input.input-text, select, textarea.input-text) {
+	line-height: 1.5;
+	padding: var(--wp--preset--spacing--xs) 0.75rem;
+}
+
+// Select2, WooCommerce's searchable country and state picker. WooCommerce
+// pads the rendered value inside the box, so the padding lives there.
+html :is(.woocommerce, .woocommerce-page) form .form-row .select2-container .select2-selection--single {
+	@include field;
+
+	height: auto;
+	padding: 0;
+
+	.select2-selection__rendered {
+		color: inherit;
+		line-height: 1.5;
+		padding: var(--wp--preset--spacing--xs) 2.25rem var(--wp--preset--spacing--xs) 0.75rem;
+	}
+
+	.select2-selection__arrow {
+		height: 100%;
+	}
+}
+
+html .select2-dropdown {
+	border-color: var(--wp--preset--color--contrast-medium);
+}
+
+// ---------------------------------------------------------------------------
+// My Account
+// ---------------------------------------------------------------------------
+
+// Login and register forms: WooCommerce boxes them in a grey border and they
+// stretch the full wide column. Drop the box and keep them readable.
+html .woocommerce :is(form.login, form.register, form.lost_reset_password) {
+	border: 0;
+	margin-block: 0;
+	max-width: 32rem;
+	padding: 0;
+}
+
+html .woocommerce-account .woocommerce :is(h2, h3) {
+	font-size: var(--wp--preset--font-size--xl);
+}
+
+// Log in button sits on its own line above "Remember me".
+html .woocommerce-form-login .form-row:has(.woocommerce-form-login__submit) {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--s);
+
+	.woocommerce-form-login__submit {
+		float: none;
+		margin: 0;
+		order: -1;
+	}
+}
+
+html .woocommerce .lost_password {
+	font-size: var(--wp--preset--font-size--xs);
+	margin-top: var(--wp--preset--spacing--m);
+}
+
+// Logged-in dashboard: the account menu becomes a plain list of links with
+// the current page marked, beside the content.
+html .woocommerce-account .woocommerce-MyAccount-navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		border-bottom: 1px solid var(--wp--preset--color--contrast-light);
+		margin: 0;
+	}
+
+	a {
+		color: var(--wp--preset--color--contrast);
+		display: block;
+		padding: 0.6rem 0;
+		text-decoration: none;
+	}
+
+	.is-active a {
+		color: var(--wp--preset--color--primary);
+		font-weight: 600;
+	}
+}
+
+html .woocommerce-account .addresses .title .edit {
+	float: none;
+}
+
+html .woocommerce-account address {
+	font-style: normal;
+}
+
+// ---------------------------------------------------------------------------
+// Single product
+// ---------------------------------------------------------------------------
+
+// Variation pickers: WooCommerce's table rule sets its own padding and size on
+// the select, so match its selector to keep the select level with the
+// quantity field and button.
+html .woocommerce table.variations {
+	margin-bottom: var(--wp--preset--spacing--s);
+
+	th,
+	td {
+		padding-block: 0.25rem;
+		vertical-align: middle;
+	}
+
+	label {
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	tr td select {
+		font-size: var(--wp--preset--font-size--s);
+		height: auto;
+		padding: var(--wp--preset--spacing--xs) 2.25rem var(--wp--preset--spacing--xs) 0.75rem;
+	}
+
+	.reset_variations {
+		font-size: var(--wp--preset--font-size--xs);
+	}
+}
+
+// WooCommerce's background shorthand on this select resets the colour; keep
+// its chevron image and restore the field colour.
+html .woocommerce div.product form.cart .variations select {
+	background-color: var(--wp--preset--color--base);
+}
+
+// Until a variation is chosen WooCommerce fades the button to half opacity,
+// which turns primary into a washed-out pink. Show a clear inactive state.
+html .woocommerce .single_add_to_cart_button.button:is(.disabled, :disabled),
+html .woocommerce .single_add_to_cart_button.button:is(.disabled, :disabled):hover {
+	background-color: var(--wp--preset--color--contrast-light);
+	color: var(--wp--preset--color--contrast-dark);
+	cursor: not-allowed;
+	opacity: 1;
+}
+
+// Review form name and email fields are plain inputs without .input-text.
+// The id is WooCommerce's, not ours to rename.
+// stylelint-disable-next-line selector-id-pattern
+html #review_form :is(input[type="text"], input[type="email"]) {
+	@include field;
+
+	display: block;
+	max-width: 32rem;
+	padding: var(--wp--preset--spacing--xs) 0.75rem;
+	width: 100%;
+}
+
+// Description / Additional information / Reviews tabs: WooCommerce draws
+// grey folder tabs with curved pseudo-element corners. Use the underline
+// indicator the navigation uses instead.
+html .woocommerce div.product .woocommerce-tabs ul.tabs {
+	border-bottom: 1px solid var(--wp--preset--color--contrast-medium);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--m);
+	margin: 0 0 var(--wp--preset--spacing--l);
+	overflow: visible;
+	padding: 0;
+
+	&::before {
+		display: none;
+	}
+
+	li {
+		background: none;
+		border: 0;
+		border-radius: 0;
+		margin: 0;
+		padding: 0;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+
+		a {
+			border-bottom: var(--wp--custom--navigation--underline--height) solid transparent;
+			color: var(--wp--preset--color--contrast-dark);
+			font-size: var(--wp--preset--font-size--s);
+			font-weight: 600;
+			margin-bottom: -1px;
+			padding: var(--wp--preset--spacing--s) 0;
+			text-decoration: none;
+		}
+
+		&.active a {
+			border-bottom-color: var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--contrast);
+		}
+	}
+}
+
+html .woocommerce div.product .woocommerce-tabs .panel {
+	margin-bottom: 0;
+
+	> h2:first-child,
+	.woocommerce-Reviews-title {
+		font-size: var(--wp--preset--font-size--xl);
+	}
+}
+
+// Gallery arrows: plain buttons, so the theme's bare-button fallback painted
+// them as filled primary squares over the photo. Make them quiet discs.
+html .wc-block-next-previous-buttons__button {
+	background-color: color-mix(in srgb, var(--wp--preset--color--base) 88%, transparent);
+	border-radius: 50%;
+	color: var(--wp--preset--color--contrast);
+	padding: var(--wp--preset--spacing--xs);
+
+	&:hover,
+	&:focus {
+		background-color: var(--wp--preset--color--base);
+		color: var(--wp--preset--color--contrast);
+	}
+
+	&[aria-disabled="true"] {
+		opacity: 0.4;
+	}
+}
+
+html .wc-block-product-gallery-thumbnails__thumbnail__image {
+	border-radius: var(--wp--preset--spacing--xs);
+}
+
+html .wc-block-product-gallery-thumbnails__thumbnail__image--is-active {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+// ---------------------------------------------------------------------------
+// Cart and checkout blocks
+// ---------------------------------------------------------------------------
+
+// The cart and checkout components hardcode white fields with a grey border
+// and a 4px radius instead of reading the --wc-form-* tokens. The cart is in
+// scope too, for the shipping calculator and coupon fields. Floating labels
+// need WooCommerce's own field height, so only colour, border and radius
+// change here.
+html :is(.wp-block-woocommerce-cart, .wp-block-woocommerce-checkout, .wc-block-mini-cart__drawer) {
+	.wc-block-components-text-input input,
+	.wc-block-components-textarea,
+	.wc-blocks-components-select .wc-blocks-components-select__container,
+	.wc-blocks-components-select .wc-blocks-components-select__select {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--contrast-medium);
+		border-radius: var(--wp--preset--spacing--xs);
+		color: var(--wp--preset--color--contrast);
+	}
+
+	// Keep WooCommerce's error red on invalid fields.
+	.has-error input,
+	.has-error .wc-blocks-components-select__container {
+		border-color: currentcolor;
+	}
+
+	.wc-block-components-text-input input:focus,
+	.wc-block-components-textarea:focus,
+	.wc-blocks-components-select .wc-blocks-components-select__select:focus {
+		border-color: var(--wp--preset--color--tertiary);
+		box-shadow: 0 0 0 1px var(--wp--preset--color--tertiary);
+	}
+
+	// Floating field labels; unrelated to the classic .form-row labels above.
+	/* stylelint-disable no-descending-specificity */
+	.wc-block-components-text-input label,
+	.wc-blocks-components-select label {
+		color: var(--wp--preset--color--contrast-dark);
+	}
+	/* stylelint-enable no-descending-specificity */
+
+	.wc-block-components-checkbox .wc-block-components-checkbox__input {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--contrast-medium);
+		border-radius: 0.25rem;
+	}
+
+	.wc-block-components-checkbox .wc-block-components-checkbox__mark {
+		fill: var(--wp--preset--color--contrast);
+	}
+
+	.wc-block-components-radio-control__input {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--contrast-medium);
+
+		&:checked::before {
+			background: var(--wp--preset--color--primary);
+		}
+	}
+
+	// Section headings (Contact information, Shipping address, Order summary)
+	// in the display face at a heading size.
+	.wc-block-components-title.wc-block-components-title,
+	.wc-block-components-checkout-order-summary__title .wc-block-components-checkout-order-summary__title-text {
+		font-family: var(--wp--preset--font-family--display);
+		font-size: var(--wp--preset--font-size--l);
+		font-weight: 700;
+	}
+
+	// "Save $5.00" in cart lines matches the sale badge in theme.json.
+	.wc-block-components-product-badge.wc-block-components-sale-badge {
+		background-color: var(--wp--preset--color--primary);
+		border: 0;
+		border-radius: var(--wp--preset--spacing--xs);
+		color: var(--wp--preset--color--base);
+		font-weight: 700;
+	}
+
+	.wc-block-components-checkout-step {
+		margin-bottom: var(--wp--preset--spacing--l);
+	}
+
+	// Boxes WooCommerce draws at 20% ink or a hardcoded grey: shipping and
+	// payment option groups, the order summary, the address card.
+	.wc-block-components-radio-control--highlight-checked::after,
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option::after,
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option::after,
+	.wp-block-woocommerce-checkout-order-summary-block,
+	.wc-block-components-address-card {
+		border-color: var(--wp--preset--color--contrast-medium);
+		border-radius: var(--wp--preset--spacing--xs);
+	}
+
+	// The selected option is ringed with a black inset shadow.
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option--checked-option-highlighted,
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option--checked-option-highlighted {
+		border-radius: var(--wp--preset--spacing--xs);
+		box-shadow: inset 0 0 0 1.5px var(--wp--preset--color--contrast);
+	}
+
+	.wc-block-components-totals-item__label,
+	.wc-block-components-totals-coupon .wc-block-components-panel__button {
+		color: var(--wp--preset--color--contrast);
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Notices
+// ---------------------------------------------------------------------------
+
+// WooCommerce's success and info banners are mint green and pale blue with a
+// 4px radius. Put them on the palette: a contrast-light panel with the accent
+// on the border and icon disc. Error and warning banners keep WooCommerce's
+// red and amber, which carry meaning the palette colours don't. Text stays
+// contrast on contrast-light, which clears 4.5:1 in every colour preset.
+html .wc-block-components-notice-banner {
+	border-radius: var(--wp--preset--spacing--xs);
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--xs);
+
+	&.is-success,
+	&.is-info {
+		background-color: var(--wp--preset--color--contrast-light);
+	}
+
+	&.is-success {
+		border-color: var(--wp--preset--color--tertiary);
+
+		> svg {
+			background-color: var(--wp--preset--color--tertiary);
+			fill: var(--wp--preset--color--base);
+		}
+	}
+
+	&.is-info {
+		border-color: var(--wp--preset--color--secondary);
+
+		> svg {
+			background-color: var(--wp--preset--color--secondary);
+			fill: var(--wp--preset--color--base);
+		}
+	}
+
+	.wc-block-components-notice-banner__content .wc-forward {
+		color: var(--wp--preset--color--contrast);
+		font-weight: 600;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Mini cart
+// ---------------------------------------------------------------------------
+
+// The drawer's outline buttons ("View my cart") use currentColor with a
+// hardcoded #1e1e1e hover; follow the theme's outline button instead.
+html .wc-block-mini-cart__drawer .wc-block-components-button.wc-block-components-button:not(.is-link).outlined,
+html .wc-block-mini-cart__drawer .wc-block-components-button.wc-block-components-button:not(.is-link).is-style-outline {
+	border-color: currentcolor;
+	color: var(--wp--preset--color--contrast);
+
+	&:hover,
+	&:focus {
+		background-color: var(--wp--preset--color--contrast);
+		color: var(--wp--preset--color--base);
+	}
+}
+
+html .wc-block-mini-cart__drawer .wc-block-mini-cart__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--l);
+}

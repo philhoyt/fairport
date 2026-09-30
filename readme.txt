@@ -6,7 +6,7 @@ Requires PHP: 7.4
 Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
+Tags: e-commerce, one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
 
 A block theme for clubs, coalitions and small non-profits.
 
@@ -20,6 +20,7 @@ Fairport is built around big photo mastheads with a single colour overlay, a ser
 * Four typography presets (Bitter & Inter, Fraunces & Manrope, Manrope, Bitter) swap the display and body roles without touching a block.
 * A "Page (No Title)" template for pages that start with their own hero.
 * Home and About starter patterns, plus hero, signpost, statement, call to action, follow and team member building blocks.
+* WooCommerce templates for the shop, product categories and attributes, product search, single products, cart, a pared-back checkout, My Account, order confirmation and the coming soon page, styled to match the rest of the site.
 
 == Installation ==
 
@@ -37,7 +38,16 @@ Add a new page. In the pattern chooser, pick Pages > Home. Then set the page's t
 
 The page template uses the page's featured image as the masthead. Set a featured image, or switch the page to the "Page (No Title)" template and start it with a Hero or Page title banner pattern.
 
+= Does Fairport support WooCommerce? =
+
+Yes. With WooCommerce active, Fairport's own templates are used for the shop, product category, tag and attribute archives, product search, single products, cart, checkout, My Account, order confirmation and the coming soon page, and WooCommerce's forms, notices, cart and checkout pick up the theme's colours, type and field style. Without WooCommerce none of this loads. The My Account template applies to the page with the slug "my-account", which is the one WooCommerce creates.
+
 == Changelog ==
+
+= 1.1.0 =
+* Add: WooCommerce templates for the shop and product archives, product search, single products, cart, checkout, My Account, order confirmation and coming soon, with a category button row, upsells and related products.
+* Add: Checkout Header and Checkout Footer template parts that keep shoppers focused on checking out.
+* Add: WooCommerce form fields, notices, tabs, cart and checkout follow the theme's palette, type and field style, loaded only while WooCommerce is active.
 
 = 1.0.2 =
 * Fix: Buttons that plugins style themselves, such as the WooCommerce mini cart toggle, keep their own look instead of being filled with the theme's dark button colour.

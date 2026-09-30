@@ -1,10 +1,9 @@
 <?php
 /**
- * Title: Header
- * Slug: fairport/header
- * Categories: header
- * Block Types: core/template-part/header
- * Description: Site header with logo, site title and primary navigation.
+ * Title: Checkout header
+ * Slug: fairport/hidden-checkout-header
+ * Inserter: no
+ * Description: Pared-back header for the checkout: logo and site title, a "Secure checkout" label and a link back to the cart, with no navigation to lead shoppers away.
  *
  * @package fairport
  */
@@ -17,14 +16,17 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|s"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
 			<!-- wp:site-logo {"width":56} /-->
-
 			<!-- wp:site-title {"level":0} /-->
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|m"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|m"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
-			<!-- wp:navigation {"overlayMenu":"mobile","icon":"menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|m"}}} /-->
+			<!-- wp:paragraph {"fontSize":"xs","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.08em","fontWeight":"700"}}} -->
+			<p class="has-xs-font-size" style="font-weight:700;letter-spacing:0.08em;text-transform:uppercase"><?php esc_html_e( 'Secure checkout', 'fairport' ); ?></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:woocommerce/cart-link {"content":"<?php echo esc_attr_x( 'Back to cart', 'Checkout header link to the cart.', 'fairport' ); ?>","fontSize":"xs"} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>

@@ -1121,6 +1121,67 @@
           "fontWeight": "700",
           "lineHeight": "1.1"
         }
+      },
+      "woocommerce/breadcrumbs": {
+        "color": {
+          "text": "var(--wp--preset--color--contrast-dark)"
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xs)"
+        }
+      },
+      "woocommerce/catalog-sorting": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xs)"
+        }
+      },
+      "woocommerce/customer-account": {
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var(--wp--preset--color--contrast)"
+            }
+          }
+        }
+      },
+      "woocommerce/mini-cart": {
+        "color": {
+          "text": "var(--wp--preset--color--contrast)"
+        }
+      },
+      "woocommerce/order-confirmation-status": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--l)"
+        }
+      },
+      "woocommerce/product-price": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      },
+      "woocommerce/product-results-count": {
+        "color": {
+          "text": "var(--wp--preset--color--contrast-dark)"
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xs)"
+        }
+      },
+      "woocommerce/product-sale-badge": {
+        "border": {
+          "radius": "var(--wp--preset--spacing--xs)",
+          "width": "0"
+        },
+        "color": {
+          "background": "var(--wp--preset--color--primary)",
+          "text": "var(--wp--preset--color--base)"
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xxs)",
+          "fontWeight": "700",
+          "letterSpacing": "0.08em",
+          "textTransform": "uppercase"
+        }
       }
     },
     "color": {
@@ -1343,6 +1404,16 @@
       "area": "footer",
       "name": "footer",
       "title": "Footer"
+    },
+    {
+      "area": "header",
+      "name": "checkout-header",
+      "title": "Checkout Header"
+    },
+    {
+      "area": "footer",
+      "name": "checkout-footer",
+      "title": "Checkout Footer"
     }
   ],
   "version": 3
