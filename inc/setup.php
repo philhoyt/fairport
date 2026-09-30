@@ -149,6 +149,33 @@ function hide_store_templates_from_picker( $templates, $query, $template_type ) 
 add_filter( 'get_block_templates', __NAMESPACE__ . '\\hide_store_templates_from_picker', 20, 3 );
 
 /**
+ * Mark the link of a button carrying the is-current class as the current page.
+ *
+ * The aria-current attribute is not part of the Button block, so writing it into saved
+ * markup would fail block validation. Patterns such as the shop category row
+ * mark the current button with a class and this adds the attribute on output.
+ *
+ * @since 1.1.0
+ * @param string $block_content Rendered block HTML.
+ * @param array  $block         Parsed block.
+ * @return string
+ */
+function mark_current_button( $block_content, $block ) {
+	$class_name = isset( $block['attrs']['className'] ) ? $block['attrs']['className'] : '';
+	if ( ! in_array( 'is-current', explode( ' ', $class_name ), true ) ) {
+		return $block_content;
+	}
+
+	$processor = new \WP_HTML_Tag_Processor( $block_content );
+	if ( $processor->next_tag( array( 'class_name' => 'wp-block-button__link' ) ) ) {
+		$processor->set_attribute( 'aria-current', 'page' );
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/button', __NAMESPACE__ . '\\mark_current_button', 10, 2 );
+
+/**
  * Add editor styles support and enqueue editor stylesheet.
  *
  * Enables theme support for editor styles and loads the editor-specific
