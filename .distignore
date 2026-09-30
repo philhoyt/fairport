@@ -32,3 +32,6 @@ phpunit.xml
 tests
 .phpunit.result.cache
 build
+.wp-env.json
+playwright.config.js
+artifacts
