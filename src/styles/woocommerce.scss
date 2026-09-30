@@ -7,15 +7,210 @@
 // live in theme.json `styles.blocks`; this file covers what it cannot reach:
 // WooCommerce's classic form markup and the cart/checkout components.
 //
+// WooCommerce restyles its components between releases. Keep selectors as
+// low as they can be while still winning, and say why each block exists.
+//
+
+// Shared field look, also used by the cart and checkout sections.
+@mixin field {
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--contrast-medium);
+	border-radius: var(--wp--preset--spacing--xs);
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--s);
+	line-height: 1.5;
+}
+
+@mixin focus-ring {
+	outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--preset--color--tertiary);
+	outline-offset: var(--wp--custom--outline--offset);
+}
+
+// ---------------------------------------------------------------------------
+// Tokens
+// ---------------------------------------------------------------------------
 
 // WooCommerce's classic form fields and extensions that reuse the markup read
 // these tokens, which WooCommerce defines on :root. Setting them on body wins
 // that tie whatever order the stylesheets load in. Radius matches the button
 // radius in theme.json `elements.button`.
+//
+// WooCommerce's block-theme CSS also sizes and spaces things with Twenty
+// Twenty-Four's preset slugs (font-size "small", spacing "20", colour
+// "background"). Fairport's slugs differ, so those references resolved to
+// nothing and fields fell back to the browser's 13px. Point them at the
+// nearest Fairport preset.
 body {
 	--wc-form-border-color: var(--wp--preset--color--contrast-medium);
 	--wc-form-border-radius: var(--wp--preset--spacing--xs);
 	--wc-form-border-width: 1px;
 	--wc-form-color-background: var(--wp--preset--color--base);
 	--wc-form-color-text: var(--wp--preset--color--contrast);
+	--wp--preset--font-size--x-small: var(--wp--preset--font-size--xs);
+	--wp--preset--font-size--small: var(--wp--preset--font-size--s);
+	--wp--preset--font-size--normal: var(--wp--preset--font-size--s);
+	--wp--preset--font-size--medium: var(--wp--preset--font-size--m);
+	--wp--preset--font-size--large: var(--wp--preset--font-size--l);
+	--wp--preset--font-size--x-large: var(--wp--preset--font-size--xl);
+	--wp--preset--font-size--huge: var(--wp--preset--font-size--xxl);
+	--wp--preset--spacing--20: var(--wp--preset--spacing--s);
+	--wp--preset--spacing--30: var(--wp--preset--spacing--m);
+	--wp--preset--spacing--40: var(--wp--preset--spacing--l);
+	--wp--preset--color--background: var(--wp--preset--color--base);
+	--wp--preset--color--foreground: var(--wp--preset--color--contrast);
+	--wp--preset--color--contrast-2: var(--wp--preset--color--contrast-dark);
+}
+
+// ---------------------------------------------------------------------------
+// Classic form fields
+// ---------------------------------------------------------------------------
+
+// Product add-to-cart, catalog sorting, reviews, My Account and any extension
+// rendering WooCommerce's classic form markup. Padding and line height give
+// the same 2.5rem height as a button, so a field and its button line up.
+body :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-form, .wp-block-woocommerce-catalog-sorting) {
+	.input-text,
+	input.qty,
+	select,
+	textarea {
+		@include field;
+
+		padding: var(--wp--preset--spacing--xs) 0.75rem;
+	}
+
+	textarea {
+		min-height: 8rem;
+	}
+
+	select {
+		// Room for WooCommerce's chevron background image.
+		padding-inline-end: 2.25rem;
+	}
+
+	:is(.input-text, input.qty, select, textarea) {
+		&:focus {
+			@include focus-ring;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+	}
+
+	.form-row label {
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		margin-bottom: 0.35rem;
+		text-transform: uppercase;
+	}
+
+	// Checkbox labels ("Remember me", terms) read as sentences.
+	.form-row label:has(input[type="checkbox"]),
+	.woocommerce-form__label-for-checkbox {
+		align-items: center;
+		display: inline-flex;
+		font-size: var(--wp--preset--font-size--s);
+		font-weight: 400;
+		gap: 0.5em;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+
+	.required {
+		color: var(--wp--preset--color--primary);
+		text-decoration: none;
+	}
+}
+
+// Select2, WooCommerce's searchable country and state picker.
+body .select2-container .select2-selection--single {
+	@include field;
+
+	height: auto;
+	padding: var(--wp--preset--spacing--xs) 0.75rem;
+
+	.select2-selection__rendered {
+		color: inherit;
+		line-height: 1.5;
+		padding: 0;
+	}
+
+	.select2-selection__arrow {
+		height: 100%;
+	}
+}
+
+body .select2-dropdown {
+	border-color: var(--wp--preset--color--contrast-medium);
+}
+
+// ---------------------------------------------------------------------------
+// My Account
+// ---------------------------------------------------------------------------
+
+// Login and register forms: WooCommerce boxes them in a grey border and they
+// stretch the full wide column. Drop the box and keep them readable.
+body .woocommerce :is(form.login, form.register, form.lost_reset_password) {
+	border: 0;
+	margin-block: 0;
+	max-width: 32rem;
+	padding: 0;
+}
+
+body .woocommerce-account .woocommerce :is(h2, h3) {
+	font-size: var(--wp--preset--font-size--xl);
+}
+
+// Log in button sits on its own line above "Remember me".
+body .woocommerce-form-login .form-row:has(.woocommerce-form-login__submit) {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--s);
+
+	.woocommerce-form-login__submit {
+		float: none;
+		margin: 0;
+		order: -1;
+	}
+}
+
+body .woocommerce .lost_password {
+	font-size: var(--wp--preset--font-size--xs);
+	margin-top: var(--wp--preset--spacing--m);
+}
+
+// Logged-in dashboard: the account menu becomes a plain list of links with
+// the current page marked, beside the content.
+body .woocommerce-account .woocommerce-MyAccount-navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		border-bottom: 1px solid var(--wp--preset--color--contrast-light);
+		margin: 0;
+	}
+
+	a {
+		color: var(--wp--preset--color--contrast);
+		display: block;
+		padding: 0.6rem 0;
+		text-decoration: none;
+	}
+
+	.is-active a {
+		color: var(--wp--preset--color--primary);
+		font-weight: 600;
+	}
+}
+
+body .woocommerce-account .addresses .title .edit {
+	float: none;
+}
+
+body .woocommerce-account address {
+	font-style: normal;
 }
