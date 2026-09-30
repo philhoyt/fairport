@@ -362,3 +362,109 @@ html .wc-block-product-gallery-thumbnails__thumbnail__image--is-active {
 	outline: 2px solid var(--wp--preset--color--primary);
 	outline-offset: 2px;
 }
+
+// ---------------------------------------------------------------------------
+// Cart and checkout blocks
+// ---------------------------------------------------------------------------
+
+// The cart and checkout components hardcode white fields with a grey border
+// and a 4px radius instead of reading the --wc-form-* tokens. The cart is in
+// scope too, for the shipping calculator and coupon fields. Floating labels
+// need WooCommerce's own field height, so only colour, border and radius
+// change here.
+html :is(.wp-block-woocommerce-cart, .wp-block-woocommerce-checkout, .wc-block-mini-cart__drawer) {
+	.wc-block-components-text-input input,
+	.wc-block-components-textarea,
+	.wc-blocks-components-select .wc-blocks-components-select__container,
+	.wc-blocks-components-select .wc-blocks-components-select__select {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--contrast-medium);
+		border-radius: var(--wp--preset--spacing--xs);
+		color: var(--wp--preset--color--contrast);
+	}
+
+	// Keep WooCommerce's error red on invalid fields.
+	.has-error input,
+	.has-error .wc-blocks-components-select__container {
+		border-color: currentcolor;
+	}
+
+	.wc-block-components-text-input input:focus,
+	.wc-block-components-textarea:focus,
+	.wc-blocks-components-select .wc-blocks-components-select__select:focus {
+		border-color: var(--wp--preset--color--tertiary);
+		box-shadow: 0 0 0 1px var(--wp--preset--color--tertiary);
+	}
+
+	// Floating field labels; unrelated to the classic .form-row labels above.
+	/* stylelint-disable no-descending-specificity */
+	.wc-block-components-text-input label,
+	.wc-blocks-components-select label {
+		color: var(--wp--preset--color--contrast-dark);
+	}
+	/* stylelint-enable no-descending-specificity */
+
+	.wc-block-components-checkbox .wc-block-components-checkbox__input {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--contrast-medium);
+		border-radius: 0.25rem;
+	}
+
+	.wc-block-components-checkbox .wc-block-components-checkbox__mark {
+		fill: var(--wp--preset--color--contrast);
+	}
+
+	.wc-block-components-radio-control__input {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--contrast-medium);
+
+		&:checked::before {
+			background: var(--wp--preset--color--primary);
+		}
+	}
+
+	// Section headings (Contact information, Shipping address, Order summary)
+	// in the display face at a heading size.
+	.wc-block-components-title.wc-block-components-title,
+	.wc-block-components-checkout-order-summary__title .wc-block-components-checkout-order-summary__title-text {
+		font-family: var(--wp--preset--font-family--display);
+		font-size: var(--wp--preset--font-size--l);
+		font-weight: 700;
+	}
+
+	// "Save $5.00" in cart lines matches the sale badge in theme.json.
+	.wc-block-components-product-badge.wc-block-components-sale-badge {
+		background-color: var(--wp--preset--color--primary);
+		border: 0;
+		border-radius: var(--wp--preset--spacing--xs);
+		color: var(--wp--preset--color--base);
+		font-weight: 700;
+	}
+
+	.wc-block-components-checkout-step {
+		margin-bottom: var(--wp--preset--spacing--l);
+	}
+
+	// Boxes WooCommerce draws at 20% ink or a hardcoded grey: shipping and
+	// payment option groups, the order summary, the address card.
+	.wc-block-components-radio-control--highlight-checked::after,
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option::after,
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option::after,
+	.wp-block-woocommerce-checkout-order-summary-block,
+	.wc-block-components-address-card {
+		border-color: var(--wp--preset--color--contrast-medium);
+		border-radius: var(--wp--preset--spacing--xs);
+	}
+
+	// The selected option is ringed with a black inset shadow.
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option--checked-option-highlighted,
+	.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option--checked-option-highlighted {
+		border-radius: var(--wp--preset--spacing--xs);
+		box-shadow: inset 0 0 0 1.5px var(--wp--preset--color--contrast);
+	}
+
+	.wc-block-components-totals-item__label,
+	.wc-block-components-totals-coupon .wc-block-components-panel__button {
+		color: var(--wp--preset--color--contrast);
+	}
+}
