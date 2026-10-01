@@ -1,10 +1,12 @@
 # Fairport
 
+[![Playground Demo](https://img.shields.io/badge/Playground_Demo-blue?logo=wordpress&logoColor=%23fff&labelColor=%233858e9&color=%23386be9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/philhoyt/fairport/main/.github/blueprint.json)
+
 A WordPress block theme for clubs, coalitions and small non-profits, built for the WordPress Theme Directory.
 
 Big photo mastheads with a single colour overlay, a serif and sans type pairing (Bitter and Inter), three-up signposts and ready-made call to action bands. Three section styles restyle a band from the block Styles panel; three colour palettes and four typography presets restyle the whole site from Global Styles.
 
-[**Try it in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/philhoyt/fairport/main/.github/blueprint.json): a throwaway site with the latest release installed, a Home and About page built from the starter patterns, and `WP_DEBUG` on.
+The Playground demo is a throwaway site with the latest release installed, a Home and About page built from the starter patterns, and `WP_DEBUG` on.
 
 See [`readme.txt`](readme.txt) for the directory listing.
 
