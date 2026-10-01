@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
 
-A block theme for clubs, coalitions and small non-profits.
+A block theme for clubs, coalitions and small non-profits
 
 == Description ==
 
@@ -16,7 +16,7 @@ Fairport is built around big photo mastheads with a single colour overlay, a ser
 
 * Pages and posts use the featured image as their masthead automatically.
 * Three section styles (Secondary, Tint, Accent) restyle a Group and everything inside it from one control.
-* Three colour palettes (Navy Blue, Forest Green, Scarlet Red) share the same slugs, so switching never breaks saved content.
+* Three colour palettes (Navy Blue, Forest Green, Scarlet Red) share the same slugs, so content saved under one palette takes on the colours of the next.
 * Four typography presets (Bitter & Inter, Fraunces & Manrope, Manrope, Bitter) swap the display and body roles without touching a block.
 * A "Page (No Title)" template for pages that start with their own hero.
 * Home and About starter patterns, plus hero, signpost, statement, call to action, follow and team member building blocks.
