@@ -60,7 +60,17 @@ npm run validate:blocks # parse every pattern, template and part with the editor
 
 `bin/wp.sh` wraps WP-CLI for the `fairport` Local site. `npm run screenshot -- http://fairport.local` regenerates `screenshot.png`; `npm run previews -- http://fairport.local` regenerates the README images in `.github/` (it switches palettes through `bin/preview-variation.php` and resets afterwards). `validate:blocks` registers WooCommerce's blocks from the running site, so it needs WooCommerce active on `fairport.local`.
 
-There are no automated PHP or JS tests yet; `tests/phpunit/` holds only a bootstrap.
+### Tests
+
+The tests run in Docker through `wp-env`, with WooCommerce's latest stable release and a seeded store:
+
+```bash
+npm run wp-env start # WordPress + WooCommerce on :8888, tests site on :8889
+npm run test:php     # PHPUnit inside wp-env
+npm run test:e2e     # Playwright specs against the :8889 tests site
+```
+
+CI (`.github/workflows/ci.yml`) runs the linters, a check that the committed `dist/` matches a fresh build, and both test suites on every pull request, on pushes to `main`, and weekly.
 
 ## Releases
 
