@@ -272,11 +272,13 @@
           "slug": "xs"
         },
         {
+          "fluid": false,
           "name": "Small",
           "size": "1rem",
           "slug": "s"
         },
         {
+          "fluid": false,
           "name": "Medium",
           "size": "1.125rem",
           "slug": "m"
