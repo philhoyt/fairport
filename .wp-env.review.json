@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/wp-env.json",
-  "themes": [ "." ],
+  "themes": ["."],
   "plugins": [
     "https://downloads.wordpress.org/plugin/wordpress-importer.latest-stable.zip",
     "https://downloads.wordpress.org/plugin/theme-check.latest-stable.zip"
