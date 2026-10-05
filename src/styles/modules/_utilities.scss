@@ -12,3 +12,9 @@
 	content: "·";
 	padding-inline: 0.5em;
 }
+
+// No separator when nothing comes before it: a password-protected post prints
+// no date, which leaves the author first in the row.
+.dot-before:first-child::before {
+	content: none;
+}

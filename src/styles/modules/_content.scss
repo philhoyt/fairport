@@ -1,0 +1,72 @@
+//
+// Module: content.
+//
+// Keeps post content inside the column on a phone. Classic editor content
+// carries pixel widths (an inline width on captions, width attributes on
+// iframes) that theme.json block styles never reach.
+//
+
+// Capped with min() so the rule does not override core's constrained-layout
+// max-width, which uses the same specificity.
+.wp-block-post-content .wp-caption {
+	max-width: min(100%, var(--wp--style--global--content-size, 100%));
+}
+
+.wp-block-post-content iframe {
+	max-width: 100%;
+}
+
+// The post navigation is a row of flex items, which never shrink below their
+// longest word unless min-width is reset.
+.wp-block-post-navigation-link {
+	min-width: 0;
+}
+
+// The [gallery] shortcode prints a gallery-columns-N class and no layout of
+// its own in a block theme. Lay it out as a grid, like the Gallery block.
+/* stylelint-disable selector-class-pattern -- classic editor classes. */
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(var(--fairport--gallery-columns, 3), minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--s);
+	align-items: start;
+}
+
+@for $i from 1 through 9 {
+	.gallery-columns-#{$i} {
+		--fairport--gallery-columns: #{$i};
+	}
+}
+
+.gallery-item {
+	margin: 0;
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+/* stylelint-enable selector-class-pattern */
+
+@media (width < 600px) {
+	// More than three thumbnails across a phone are too small to make out.
+	/* stylelint-disable-next-line selector-class-pattern -- classic editor classes. */
+	.gallery:not(.gallery-columns-1, .gallery-columns-2) {
+		--fairport--gallery-columns: 3;
+	}
+
+	// Floats next to text that can now break mid-word would leave a strip one
+	// letter wide beside them.
+	.wp-block-post-content .alignleft,
+	.wp-block-post-content .alignright {
+		max-width: 50%;
+	}
+
+	// Core indents each reply list with 2rem of padding on top of the theme's
+	// margin. On a phone, one small indent per level keeps deep replies readable.
+	.wp-block-comment-template ol {
+		padding-inline-start: 0;
+		margin-inline-start: var(--wp--preset--spacing--s);
+	}
+}

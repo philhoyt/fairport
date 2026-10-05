@@ -277,3 +277,50 @@ function register_block_styles() {
 	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_block_styles' );
+
+/**
+ * Add page links to a paginated post written in the classic editor.
+ *
+ * The Post Content block prints wp_link_pages() only when the post contains a
+ * Page Break block. A classic `<!--nextpage-->` marker still splits the post
+ * into pages, which are then left with no links between them. The links go
+ * inside the block's wrapper, where core puts them for a Page Break.
+ *
+ * @since 1.2.0
+ * @param string $block_content Rendered block HTML.
+ * @return string
+ */
+function append_classic_page_links( $block_content ) {
+	global $multipage;
+
+	if ( ! $multipage || '' === $block_content || has_block( 'core/nextpage' ) ) {
+		return $block_content;
+	}
+
+	$closing_tag = strrpos( $block_content, '</' );
+	if ( false === $closing_tag ) {
+		return $block_content;
+	}
+
+	return substr_replace( $block_content, wp_link_pages( array( 'echo' => 0 ) ), $closing_tag, 0 );
+}
+add_filter( 'render_block_core/post-content', __NAMESPACE__ . '\\append_classic_page_links' );
+
+/**
+ * Hide the comments section of a password-protected post until it is unlocked.
+ *
+ * Core withholds the comments themselves but still prints the Comments block's
+ * heading, which leaves a "Comments" title with nothing under it.
+ *
+ * @since 1.2.0
+ * @param string    $block_content Rendered block HTML.
+ * @param array     $block         Parsed block.
+ * @param \WP_Block $instance      Block instance.
+ * @return string
+ */
+function hide_locked_comments( $block_content, $block, $instance ) {
+	$post_id = isset( $instance->context['postId'] ) ? $instance->context['postId'] : get_the_ID();
+
+	return post_password_required( $post_id ) ? '' : $block_content;
+}
+add_filter( 'render_block_core/comments', __NAMESPACE__ . '\\hide_locked_comments', 10, 3 );

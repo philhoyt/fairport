@@ -33,5 +33,6 @@ tests
 .phpunit.result.cache
 build
 .wp-env.json
+.wp-env.review.json
 playwright.config.js
 artifacts

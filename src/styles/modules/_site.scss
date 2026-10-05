@@ -9,7 +9,10 @@
 		width: 100%;
 		min-block-size: 100svh;
 		display: grid;
-		grid-template-columns: 1fr;
+
+		// minmax(0, 1fr), not 1fr: a 1fr track grows to its widest content,
+		// so one long word or a <pre> stretched the whole page on a phone.
+		grid-template-columns: minmax(0, 1fr);
 		grid-template-rows: auto 1fr auto;
 		grid-template-areas:
 			"header"
@@ -43,4 +46,10 @@
 // theme.json because it is also the fallback gap for every layout block.
 .wp-site-blocks > * {
 	margin-block: 0;
+}
+
+// Let a word longer than the line (a long title in the post navigation, a URL
+// in a comment) break instead of pushing the page wider than a phone.
+body {
+	overflow-wrap: break-word;
 }
