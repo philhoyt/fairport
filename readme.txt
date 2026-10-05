@@ -3,7 +3,7 @@ Contributors: philhoyt
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, one-column, wide-blocks, block-styles, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, rtl-language-support, style-variations, threaded-comments, translation-ready
@@ -43,6 +43,15 @@ The page template uses the page's featured image as the masthead. Set a featured
 Yes. With WooCommerce active, Fairport's own templates are used for the shop, product category, tag and attribute archives, product search, single products, cart, checkout, My Account, order confirmation and the coming soon page, and WooCommerce's forms, notices, cart and checkout pick up the theme's colours, type and field style. Without WooCommerce none of this loads. The My Account template applies to the page with the slug "my-account", which is the one WooCommerce creates.
 
 == Changelog ==
+
+= 1.1.1 =
+* Fix: Body text keeps its set size on phones instead of shrinking towards 14px.
+* Fix: Long words, preformatted text, captioned images and embeds with fixed widths stay inside the screen on phones.
+* Fix: The classic gallery shortcode is laid out as a grid, and replies in deep comment threads indent by a smaller step on phones.
+* Fix: Posts split into pages in the classic editor get page links.
+* Fix: Password-protected posts hide the empty Comments heading and the stray separator dot before the author until they are unlocked.
+* Fix: The closed WooCommerce mini cart is skipped when tabbing through a page.
+* Fix: The active product tab drops its white fill, and the create-account box on the order confirmation page gets its tint.
 
 = 1.1.0 =
 * Add: WooCommerce templates for the shop and product archives, product search, single products, cart, checkout, My Account, order confirmation and coming soon, with a category button row, upsells and related products.

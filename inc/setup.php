@@ -286,7 +286,7 @@ add_action( 'init', __NAMESPACE__ . '\\register_block_styles' );
  * into pages, which are then left with no links between them. The links go
  * inside the block's wrapper, where core puts them for a Page Break.
  *
- * @since 1.2.0
+ * @since 1.1.1
  * @param string $block_content Rendered block HTML.
  * @return string
  */
@@ -312,7 +312,7 @@ add_filter( 'render_block_core/post-content', __NAMESPACE__ . '\\append_classic_
  * Core withholds the comments themselves but still prints the Comments block's
  * heading, which leaves a "Comments" title with nothing under it.
  *
- * @since 1.2.0
+ * @since 1.1.1
  * @param string    $block_content Rendered block HTML.
  * @param array     $block         Parsed block.
  * @param \WP_Block $instance      Block instance.
