@@ -5,6 +5,6 @@
     "https://downloads.wordpress.org/plugin/wordpress-importer.latest-stable.zip",
     "https://downloads.wordpress.org/plugin/theme-check.latest-stable.zip"
   ],
-  "port": 8896,
-  "testsPort": 8897
+  "port": 8900,
+  "testsPort": 8901
 }
