@@ -100,6 +100,111 @@ function is_woocommerce_active() {
 }
 
 /**
+ * Slugs of the templates and parts that only make sense with WooCommerce.
+ *
+ * @since 1.1.2
+ * @param string $template_type wp_template or wp_template_part.
+ * @return string[]
+ */
+function store_template_slugs( $template_type ) {
+	if ( 'wp_template_part' === $template_type ) {
+		return array( 'checkout-header', 'checkout-footer' );
+	}
+
+	return array(
+		'archive-product',
+		'coming-soon',
+		'order-confirmation',
+		'page-cart',
+		'page-checkout',
+		'page-my-account',
+		'product-search-results',
+		'single-product',
+		'taxonomy-product_attribute',
+	);
+}
+
+/**
+ * Whether a template is one of the theme's own store templates or parts.
+ *
+ * Only theme files count. A copy the user has customised in the Site Editor
+ * is their content and stays visible whatever plugins are active.
+ *
+ * @since 1.1.2
+ * @param \WP_Block_Template $template      Template to check.
+ * @param string             $template_type wp_template or wp_template_part.
+ * @return bool
+ */
+function is_store_template_file( $template, $template_type ) {
+	return 'theme' === $template->source
+		&& in_array( $template->slug, store_template_slugs( $template_type ), true );
+}
+
+/**
+ * Remove the theme's store templates or checkout parts from a list.
+ *
+ * @since 1.1.2
+ * @param \WP_Block_Template[] $templates     Templates to filter.
+ * @param string               $template_type wp_template or wp_template_part.
+ * @return \WP_Block_Template[]
+ */
+function remove_store_template_files( $templates, $template_type ) {
+	return array_values(
+		array_filter(
+			$templates,
+			static function ( $template ) use ( $template_type ) {
+				return ! is_store_template_file( $template, $template_type );
+			}
+		)
+	);
+}
+
+/**
+ * Drop the store templates and checkout parts while WooCommerce is inactive.
+ *
+ * Without WooCommerce the templates are full of unregistered blocks, and
+ * page-cart, page-checkout and page-my-account would still capture any page
+ * with that slug. Front-end resolution, the Site Editor lists and the REST
+ * templates collection all go through get_block_templates(), so this one
+ * filter covers them; the single-template lookups are handled below.
+ *
+ * @since 1.1.2
+ * @param \WP_Block_Template[] $templates     Found templates.
+ * @param array                $query         Template query arguments.
+ * @param string               $template_type wp_template or wp_template_part.
+ * @return \WP_Block_Template[]
+ */
+function hide_store_templates_without_woocommerce( $templates, $query, $template_type ) {
+	if ( is_woocommerce_active() ) {
+		return $templates;
+	}
+
+	return remove_store_template_files( $templates, $template_type );
+}
+add_filter( 'get_block_templates', __NAMESPACE__ . '\\hide_store_templates_without_woocommerce', 10, 3 );
+
+/**
+ * Refuse a store template or checkout part looked up by id while WooCommerce
+ * is inactive, so the REST single-template route and the Site Editor's direct
+ * URL return not found instead of a template of unregistered blocks.
+ *
+ * @since 1.1.2
+ * @param \WP_Block_Template|null $template      Template found, or null.
+ * @param string                  $id            Template id, theme//slug.
+ * @param string                  $template_type wp_template or wp_template_part.
+ * @return \WP_Block_Template|null
+ */
+function hide_store_template_without_woocommerce( $template, $id, $template_type ) {
+	if ( null === $template || is_woocommerce_active() ) {
+		return $template;
+	}
+
+	return is_store_template_file( $template, $template_type ) ? null : $template;
+}
+add_filter( 'get_block_template', __NAMESPACE__ . '\\hide_store_template_without_woocommerce', 10, 3 );
+add_filter( 'get_block_file_template', __NAMESPACE__ . '\\hide_store_template_without_woocommerce', 10, 3 );
+
+/**
  * Keep the store templates out of the post editor's template picker.
  *
  * Core offers every theme template file that declares no postTypes as a
@@ -125,17 +230,7 @@ function hide_store_templates_from_picker( $templates, $query, $template_type ) 
 		return $templates;
 	}
 
-	$store_templates = array(
-		'archive-product',
-		'coming-soon',
-		'order-confirmation',
-		'page-cart',
-		'page-checkout',
-		'page-my-account',
-		'product-search-results',
-		'single-product',
-		'taxonomy-product_attribute',
-	);
+	$store_templates = store_template_slugs( $template_type );
 
 	if ( empty( $query['post_type'] ) ) {
 		foreach ( $templates as $template ) {
