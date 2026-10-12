@@ -13,18 +13,15 @@
 <div class="wp-block-group is-style-section-tint" style="margin-top:var(--wp--preset--spacing--xxl);padding-top:var(--wp--preset--spacing--l);padding-bottom:var(--wp--preset--spacing--l)">
 	<!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:paragraph {"fontSize":"xs"} -->
-		<p class="has-xs-font-size">
-			<?php
-			printf(
-				/* translators: 1: current year, 2: site name. */
-				esc_html__( '&copy; %1$s %2$s', 'fairport' ),
-				esc_html( gmdate( 'Y' ) ),
-				esc_html( get_bloginfo( 'name' ) )
-			);
-			?>
-		</p>
-		<!-- /wp:paragraph -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"0.35em"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph {"fontSize":"xs"} -->
+			<p class="has-xs-font-size">©</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:site-title {"level":0,"isLink":false,"fontSize":"xs"} /-->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:paragraph {"fontSize":"xs"} -->
 		<p class="has-xs-font-size"><?php esc_html_e( 'Questions about your order? Reply to your order confirmation email and we will get back to you.', 'fairport' ); ?></p>
