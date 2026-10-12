@@ -43,9 +43,6 @@
           "color": {
             "background": "var(--wp--preset--color--contrast-light)",
             "text": "var(--wp--preset--color--secondary)"
-          },
-          "outline": {
-            "color": "var(--wp--preset--color--base)"
           }
         }
       },

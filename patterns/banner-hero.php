@@ -4,7 +4,7 @@
  * Slug: fairport/banner-hero
  * Categories: banner, featured
  * Viewport Width: 1400
- * Description: Full-height photo masthead with a colour overlay, heading, intro and two buttons.
+ * Description: Full-height photo masthead with a colour overlay, heading, intro and two buttons. For the "Page (No Title)" template: the heading is the page's H1.
  *
  * @package fairport
  */

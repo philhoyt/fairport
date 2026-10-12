@@ -54,6 +54,18 @@ jobs:
           unzip -l fairport.zip | awk '{print $4}' | grep -E "^fairport/(style.css|theme.json|readme.txt|templates/index.html|dist/css/style.css)$" | wc -l | grep -qx 5
           ! unzip -l fairport.zip | grep -E "node_modules|/src/|/tests/|\.claude|/bin/"
 
+      # The Theme Directory requires stylesheets to ship as readable source. A
+      # minified file has no indented lines, however it is wrapped.
+      - name: Check the stylesheets are not minified
+        run: |
+          for f in build/fairport/dist/css/*.css; do
+            n=$(grep -c '^[[:space:]]' "$f" || true)
+            echo "$f: $n indented lines"
+            if [ "$n" -lt 20 ]; then
+              echo "::error::$f looks minified"; exit 1
+            fi
+          done
+
       - name: Extract changelog
         run: |
           VERSION="${GITHUB_REF_NAME#v}"

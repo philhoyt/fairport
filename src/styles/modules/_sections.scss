@@ -22,6 +22,19 @@
 
 // Shared between the front-end and the editor.
 
+// Focus ring per band. The ring colour is --wp--custom--outline--color
+// (theme.json), tertiary by default, which holds 3:1 on base and on the tint
+// band in every colour preset. Tertiary fails on the accent band (1.08:1 on
+// the default red) and on the secondary band, so those set the property for
+// everything inside them: links, buttons and fields alike. Base is each band's
+// own text colour and holds at least 5:1 on both in all presets. The colour
+// cannot be currentcolor: a focused button on a band changes its own text
+// colour, and the ring sits outside the button, on the band.
+.is-style-section-accent,
+.is-style-section-secondary {
+	--wp--custom--outline--color: var(--wp--preset--color--base);
+}
+
 // Headings inside a photo band need a shadow to stay legible over busy images.
 .wp-block-cover :where(h1, h2, h3) {
 	text-shadow: 0 1px 3px rgb(0 0 0 / 35%);
