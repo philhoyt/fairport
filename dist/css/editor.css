@@ -8,6 +8,10 @@
 body {
   overflow-wrap: break-word;
 }
+.is-style-section-accent,
+.is-style-section-secondary {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
 .wp-block-cover :where(h1, h2, h3) {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }

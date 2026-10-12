@@ -120,6 +120,26 @@ $top-item: ".wp-block-navigation .wp-block-navigation__container > .wp-block-nav
 		padding: var(--wp--preset--spacing--xl) var(--wp--preset--spacing--m) !important;
 	}
 
+	// The overlay takes whichever palette colour the block was given, so map
+	// every preset background to a focus ring that holds 3:1 on it (see
+	// modules/sections for the bands and docs/design-notes.md for the pairs).
+	$overlay-rings: (
+		"base": "tertiary",
+		"contrast-light": "tertiary",
+		"primary": "base",
+		"secondary": "base",
+		"contrast": "base",
+		"contrast-dark": "base",
+		"contrast-medium": "contrast",
+		"tertiary": "base",
+	);
+
+	@each $background, $ring in $overlay-rings {
+		.wp-block-navigation__responsive-container.is-menu-open.has-#{$background}-background-color {
+			--wp--custom--outline--color: var(--wp--preset--color--#{$ring});
+		}
+	}
+
 	// The header justifies the bar to the right, which core carries into the
 	// overlay as `items-justified-right`. In a full-screen column that resolves to
 	// `align-items: flex-end` and pushes every label off the right edge, so reset

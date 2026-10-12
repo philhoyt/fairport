@@ -42,7 +42,7 @@ html :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-f
 }
 
 html :where(.woocommerce, .woocommerce-page, .wp-block-woocommerce-add-to-cart-form, .wp-block-woocommerce-catalog-sorting) :is(.input-text, input.qty, select, textarea):focus {
-  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--preset--color--tertiary);
+  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--custom--outline--color);
   outline-offset: var(--wp--custom--outline--offset);
 }
 

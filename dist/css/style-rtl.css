@@ -108,6 +108,10 @@ body {
 .wp-block-post-content > .alignfull + .alignfull {
   margin-block-start: 0;
 }
+.is-style-section-accent,
+.is-style-section-secondary {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
 .wp-block-cover :where(h1, h2, h3) {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
@@ -136,7 +140,7 @@ input:where([type=email], [type=number], [type=password], [type=search], [type=t
 textarea:focus,
 select:focus,
 input:where([type=email], [type=number], [type=password], [type=search], [type=text], [type=tel], [type=url]):focus {
-  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--preset--color--tertiary);
+  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--custom--outline--color);
   outline-offset: var(--wp--custom--outline--offset);
 }
 textarea:focus:not(:focus-visible),
@@ -163,7 +167,7 @@ input:where([type=email], [type=number], [type=password], [type=search], [type=t
   color: var(--wp--preset--color--base);
 }
 :where(button:not(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close), input[type=button], input[type=submit], input[type=reset]):where(:focus) {
-  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--preset--color--tertiary);
+  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--custom--outline--color);
   outline-offset: var(--wp--custom--outline--offset);
 }
 :where(button:not(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close), input[type=button], input[type=submit], input[type=reset]):focus:not(:focus-visible) {
@@ -235,6 +239,30 @@ input:where([type=email], [type=number], [type=password], [type=search], [type=t
   background-color: var(--wp--preset--color--base) !important;
   padding: var(--wp--preset--spacing--xl) var(--wp--preset--spacing--m) !important;
 }
+.wp-block-navigation__responsive-container.is-menu-open.has-base-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--tertiary);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-contrast-light-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--tertiary);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-primary-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-secondary-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-contrast-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-contrast-dark-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-contrast-medium-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--contrast);
+}
+.wp-block-navigation__responsive-container.is-menu-open.has-tertiary-background-color {
+  --wp--custom--outline--color: var(--wp--preset--color--base);
+}
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content,
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container,
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
@@ -297,17 +325,21 @@ a {
   text-underline-offset: 0.1em;
 }
 a:focus {
-  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--preset--color--tertiary);
+  outline: var(--wp--custom--outline--width) var(--wp--custom--outline--style) var(--wp--custom--outline--color);
   outline-offset: var(--wp--custom--outline--offset);
 }
 a:focus:not(:focus-visible) {
   outline: none !important;
 }
-/* Focus styles */
+/*
+* Focus styles. The ring colour is --wp--custom--outline--color from theme.json,
+* tertiary by default; the section styles (modules/sections) and the mobile
+* menu overlay (modules/navigation) set it per band.
+*/
 :where(.wp-site-blocks *:focus) {
   outline-width: 2px;
   outline-style: solid;
-  outline-color: var(--wp--preset--color--tertiary);
+  outline-color: var(--wp--custom--outline--color);
 }
 /* Increase the bottom margin on submenus, so that the outline is visible. */
 .wp-block-navigation .wp-block-navigation-submenu .wp-block-navigation-item:not(:last-child) {
