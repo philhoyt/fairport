@@ -194,6 +194,8 @@ wp i18n make-pot . languages/fairport.pot --include="templates,parts,patterns,in
 
 The `--include` paths cover both PHP source and any patterns/templates that might pick up additional strings as the theme grows.
 
+Regenerate the pot after every version bump and commit it with the release: its `Project-Id-Version` carries the theme version, and 1.1.1 shipped a pot still saying 1.0.2. `/wp-release` does not do this on its own.
+
 ### Testing
 
 `npm run wp-env start` runs WordPress with the theme and WooCommerce's latest stable release in Docker. The `afterStart` script in `.wp-env.json` turns on `WP_DEBUG` display, activates WooCommerce and Fairport, and seeds the tests site (`:8889`) with `bin/seed-store.php`: WooCommerce's pages, Gear and Prints categories, a simple, an on-sale and a variable product (SKUs `FP-TEST-1` to `3`). It is safe to rerun.

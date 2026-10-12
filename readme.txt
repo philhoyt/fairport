@@ -44,6 +44,14 @@ Yes. With WooCommerce active, Fairport's own templates are used for the shop, pr
 
 == Changelog ==
 
+= 1.1.2 =
+* Change: The stylesheets ship as readable CSS instead of minified files, as the theme directory requires.
+* Change: The footer copyright line is built from blocks and shows the site name without a year, so it stays current after the footer is edited in the Site Editor. A footer already saved in the Site Editor keeps its text until it is reset.
+* Fix: The keyboard focus ring changes colour with the band it sits on. It was teal everywhere, which was hard to see on the accent and secondary bands.
+* Fix: Without WooCommerce, the store templates and the checkout header and footer no longer show in the Site Editor, and pages with the slug cart, checkout or my-account use the page template.
+* Fix: The hero pattern descriptions say they are for the "Page (No Title)" template, where their heading is the page's only H1.
+* Fix: Removed the text domain loading call, which the theme directory handles.
+
 = 1.1.1 =
 * Fix: Body text keeps its set size on phones instead of shrinking towards 14px.
 * Fix: Long words, preformatted text, captioned images and embeds with fixed widths stay inside the screen on phones.
