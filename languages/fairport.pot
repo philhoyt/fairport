@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the theme
 #: style.css
-msgid "A block theme for clubs, coalitions and small non-profits. Big photo mastheads with a colour overlay, a serif and sans type pairing, three-up signposts and ready-made call to action bands. Section styles, three colour palettes and four typography presets let you restyle every band from Global Styles."
+msgid "A clean, general-purpose block theme. Big photo mastheads with a colour overlay, a serif and sans type pairing, three-up signposts and ready-made call to action bands. Section styles, three colour palettes and four typography presets let you restyle every band from Global Styles."
 msgstr ""
 
 #. Author of the theme
